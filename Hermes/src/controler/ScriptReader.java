@@ -115,10 +115,6 @@ public class ScriptReader
 		scenario.addTeam(team);
 		scenario.addTeam(team2);
 		
-		//TEST
-		scenario.addTest(player);
-		scenario.addTest(player2);
-		
 		//Ajout des objets dans le moteur:
 		moteur.put("scenario", scenario);
 	}

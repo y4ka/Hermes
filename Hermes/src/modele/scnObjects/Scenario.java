@@ -13,9 +13,6 @@ public class Scenario
 	private Player[] players;
 	private Team[] teams;
 	
-	private Hashtable<Integer, Player> da = new Hashtable<Integer, Player>();
-	
-	
 	public Scenario(int numberOfPylons, int numberOfPlayers, int numberOfTeams)
 	{
 		this.numberOfPylons = numberOfPylons;
@@ -114,23 +111,4 @@ public class Scenario
 	{
 		teams[0] = team;
 	}
-	
-	public void addTest(Player newPlayer)
-	{
-		da.put(newPlayer.getId(), newPlayer);
-	}
-
-
-
-	public Hashtable<Integer, Player> getDa() {
-		return da;
-	}
-
-
-
-	public void setDa(Hashtable<Integer, Player> da) {
-		this.da = da;
-	}
-
-	
 }
