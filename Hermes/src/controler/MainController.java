@@ -1,5 +1,7 @@
 package controler;
 
+import java.io.File;
+
 
 public class MainController 
 {
@@ -9,17 +11,17 @@ public class MainController
 	{
 		this.initialisation();
 		
-		System.out.println("===============================================================================================");
-		
 		//TEST SCENARIO:
 		scriptReader.invokeButtonInput(0, "BLUE");
 	}
 	
-	private void initialisation()
+	public void initialisation()
 	{
 		scriptReader.init();
 		scriptReader.loadObjects();
 	}
+	
+	
 	
 	public void messageReceived()
 	{

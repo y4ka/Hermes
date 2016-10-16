@@ -1,5 +1,6 @@
 package controler;
 
+import java.io.File;
 import java.util.List;
 
 import javax.script.Bindings;
@@ -84,8 +85,6 @@ public class ScriptReader
 	{
 		loadEngine();
 		loadScript("scenario.js");
-		
-		//loadScript("stalingrad.js");
 	}
 	
 	public void loadObjects()
