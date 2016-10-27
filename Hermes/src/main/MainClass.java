@@ -12,6 +12,6 @@ public class MainClass
 		MainController mainController = new MainController();
 		MessageAdapter messageAdapter = new MessageAdapter(mainController);
 		Modele modele = new Modele();
-		MainFrame frame = new MainFrame(mainController);
+		//MainFrame frame = new MainFrame(mainController);
 	}
 }

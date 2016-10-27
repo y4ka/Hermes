@@ -27,33 +27,6 @@ public class ScriptReader
 		
 	}
 	
-	public void invokeScriptIntelligence()
-	{
-		try 
-		{
-			//moteur.eval(scriptString);
-
-			// On recupere les valeurs en sortie:
-			// Integer resultat = (Integer)moteur.get("newID");
-			// System.out.println("resultat = "+resultat);
-
-			// On teste la reception d'un message d'un pylone:
-			if (moteur instanceof Invocable) 
-			{
-				Invocable moteurInvocable = (Invocable) moteur;
-				Object result = moteurInvocable.invokeFunction("inputButton", new Integer(10), new Integer(10));
-				System.out.println("resultat = " + result);
-			} 
-			else 
-			{
-				System.err.println("Le moteur n'implemente pas l'interface Invocable");
-			}
-
-		} catch (ScriptException | NoSuchMethodException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public void invokeButtonInput(int idButton, String colorButton)
 	{
 		try 
@@ -81,6 +54,26 @@ public class ScriptReader
 		}
 	}
 	
+	public void invokeTick(int nbTick)
+	{
+		try 
+		{
+			if (moteur instanceof Invocable) 
+			{
+				Invocable moteurInvocable = (Invocable) moteur;
+				Object result = moteurInvocable.invokeFunction("tick", nbTick);
+				System.out.println("Tick = " + result);
+			}
+			else 
+			{
+				System.err.println("Le moteur n'implemente pas l'interface Invocable");
+			}
+
+		} catch (ScriptException | NoSuchMethodException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void init()
 	{
 		loadEngine();
@@ -89,7 +82,6 @@ public class ScriptReader
 	
 	public void loadObjects()
 	{
-		
 		System.out.println("\n***** LOAD SCENARIO OBJECTS *****");
 		
 		Player player = new Player(0, "Lolo");

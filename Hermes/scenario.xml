@@ -1,0 +1,23 @@
+<scenario>
+    <teams nbTeams="2">
+        <team teamId="0">
+            <teamShortName>AAC</teamShortName>
+            <teamName>Association Airsoft Celloise</teamName>
+        </team>
+        <team teamId="1">
+            <teamShortName>RK</teamShortName>
+            <teamName>Rasen Katon</teamName>
+        </team>
+    </teams>
+    <players nbPlayers="3">
+    	<player idPlayer="0">
+    		<playerName>Evergnault</playerName>
+    	</player>
+    	<player idPlayer="1">
+    		<playerName>PapaOurs</playerName>
+    	</player>
+    	<player idPlayer="2">
+    		<playerName>Vincent</playerName>
+    	</player>
+    </players>
+</scenario>
