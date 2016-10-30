@@ -1,6 +1,8 @@
 package modele;
 
-public class Modele 
+import java.util.Observable;
+
+public class Modele extends Observable
 {
 	public Modele()
 	{

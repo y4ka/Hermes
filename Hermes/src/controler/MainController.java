@@ -1,25 +1,21 @@
 package controler;
 
-import java.io.File;
-import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
+import modele.Modele;
 import modele.tools.XmlTool;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import vue.View;
 
 
-public class MainController 
+public class MainController implements ActionListener 
 {
+	
+	private Modele model;
+	private View view;
+	
 	private ScriptReader scriptReader =  new ScriptReader();
 	private XmlTool xmlTool = new XmlTool();
 	private TimerTask task;
@@ -65,6 +61,26 @@ public class MainController
 	}
 	
 	public void messageReceived()
+	{
+		
+	}
+	
+	public void addModel(Modele m)
+	{
+		this.model = m;
+	}
+
+	public void addView(View v)
+	{
+		this.view = v;
+	}
+
+	public void initModel()
+	{
+		
+	}
+
+	public void actionPerformed(ActionEvent evt) 
 	{
 		
 	}

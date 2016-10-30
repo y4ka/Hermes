@@ -2,16 +2,30 @@ package main;
 
 import messageAdapter.MessageAdapter;
 import modele.Modele;
-import vue.MainFrame;
+import vue.View;
 import controler.MainController;
 
 public class MainClass 
 {
 	public static void main (String [] args) throws NoSuchMethodException
-	{
-		MainController mainController = new MainController();
-		MessageAdapter messageAdapter = new MessageAdapter(mainController);
-		Modele modele = new Modele();
-		//MainFrame frame = new MainFrame(mainController);
+	{		
+		//Create Model and View:
+		Modele model = new Modele();
+		View view = new View();
+		
+		//Tell Model about View. 
+		model.addObserver(view);
+		
+		//Create Controller. tell it about Model and View, initialise model
+		MainController controller = new MainController();
+		controller.addModel(model);
+		controller.addView(view);
+		controller.initModel();
+
+		//Tell View about Controller 
+		view.addController(controller);
+		
+		//Create Message Adapter
+		MessageAdapter messageAdapter = new MessageAdapter(controller);
 	}
 }
