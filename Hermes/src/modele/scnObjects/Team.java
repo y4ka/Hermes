@@ -1,18 +1,19 @@
 package modele.scnObjects;
 
+import java.util.ArrayList;
+
 public class Team 
 {
 	private int id;
 	private String name;
-	private int nbPlayers;
-	private Player[] players;
+	private String shortName;
+	private ArrayList<Player> players = new ArrayList<Player>();
 	
-	public Team(int id, String name)
+	public Team(int id, String name, String shortName)
 	{
 		this.id = id;
 		this.name = name;
-		this.nbPlayers = 1;
-		this.players = new Player[nbPlayers];
+		this.shortName = shortName;
 	}
 
 	public int getId() {
@@ -32,24 +33,19 @@ public class Team
 	}
 
 	public int getNbPlayers() {
-		return nbPlayers;
-	}
-
-	public void setNbPlayers(int nbPlayers) {
-		this.nbPlayers = nbPlayers;
-	}
-
-	public Player[] getPlayers() {
-		return players;
-	}
-
-	public void setPlayers(Player[] players) {
-		this.players = players;
+		return players.size();
 	}
 	
-	//Provisioire
-	public void addPlayers(Player player)
+	public String getShortName() {
+		return shortName;
+	}
+
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
+	
+	public void addPlayer(Player player)
 	{
-		players[0] = player;
+		players.add(player);
 	}
 }

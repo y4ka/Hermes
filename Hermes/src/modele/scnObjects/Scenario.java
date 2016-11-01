@@ -5,110 +5,90 @@ import java.util.Hashtable;
 
 public class Scenario 
 {
-	private int numberOfPylons;
-	private int numberOfPlayers;
-	private int numberOfTeams;
-	
 	private Pylon[] pylons;
 	private Player[] players;
 	private Team[] teams;
 	
 	public Scenario(int numberOfPylons, int numberOfPlayers, int numberOfTeams)
-	{
-		this.numberOfPylons = numberOfPylons;
-		this.numberOfPlayers = numberOfPlayers;
-		this.numberOfTeams = numberOfTeams;
-		
+	{	
 		this.pylons = new Pylon[numberOfPylons];
 		this.players = new Player[numberOfPlayers];
 		this.teams = new Team[numberOfTeams];
 	}
 
-	
-	
 	public int getNumberOfPylons() {
-		return numberOfPylons;
-	}
-
-
-
-	public void setNumberOfPylons(int numberOfPylons) {
-		this.numberOfPylons = numberOfPylons;
+		return pylons.length;
 	}
 
 	public int getNumberOfPlayers() {
-		return numberOfPlayers;
+		return players.length;
 	}
-
-
-
-	public void setNumberOfPlayers(int numberOfPlayers) {
-		this.numberOfPlayers = numberOfPlayers;
-	}
-
-
 
 	public int getNumberOfTeams() {
-		return numberOfTeams;
+		return teams.length;
 	}
-
-
-
-	public void setNumberOfTeams(int numberOfTeams) {
-		this.numberOfTeams = numberOfTeams;
-	}
-
-
 
 	public Pylon[] getPylons() {
 		return pylons;
 	}
 
-
-
 	public void setPylons(Pylon[] pylons) {
 		this.pylons = pylons;
 	}
-
-
 
 	public Player[] getPlayers() {
 		return players;
 	}
 
-
-
 	public void setPlayers(Player[] players) {
 		this.players = players;
 	}
-
-
 
 	public Team[] getTeams() {
 		return teams;
 	}
 
-
-
 	public void setTeams(Team[] teams) {
 		this.teams = teams;
 	}
 
-	
-
-	//Provisioire
+	//REWORK NEEDEED:
 	public void addPylon(Pylon pylon)
 	{
-		pylons[0] = pylon;
+		int pylonId = pylon.getId();
+		if (pylonId < pylons.length)
+		{
+			pylons[pylonId] = pylon;
+		}
+		else
+		{
+			System.out.println("WARNING: pylonId = "+pylonId+", NbPylonDeclared = "+pylons.length);
+		}
 	}
-	
+		
 	public void addPlayer(Player player)
 	{
-		players[0] = player;
+		int playerId = player.getId();
+		if (playerId < players.length)
+		{
+			players[playerId] = player;
+		}
+		else
+		{
+			System.out.println("WARNING: playerId = "+playerId+", NbPlayersDeclared = "+players.length);
+		}
 	}
 	
 	public void addTeam(Team team)
 	{
-		teams[0] = team;
+		int teamId = team.getId();
+		if (teamId < teams.length)
+		{
+			teams[teamId] = team;
+		}
+		else
+		{
+			System.out.println("WARNING: teamId = "+teamId+", NbTeamDeclared = "+teams.length);
+		}
 	}
 }

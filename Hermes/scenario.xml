@@ -10,14 +10,24 @@
         </team>
     </teams>
     <players nbPlayers="3">
-    	<player idPlayer="0">
+    	<player playerId="0">
     		<playerName>Evergnault</playerName>
     	</player>
-    	<player idPlayer="1">
+    	<player playerId="1">
     		<playerName>PapaOurs</playerName>
     	</player>
-    	<player idPlayer="2">
+    	<player playerId="2">
     		<playerName>Vincent</playerName>
     	</player>
     </players>
+    <pylons nbPylons="2">
+    	<pylon pylonId="0">
+    		<pylonName>A Site</pylonName>
+    		<enabled>true</enabled>
+    	</pylon>
+    	<pylon pylonId="1">
+    		<pylonName>B Site</pylonName>
+    		<enabled>false</enabled>
+    	</pylon>
+    </pylons>
 </scenario>

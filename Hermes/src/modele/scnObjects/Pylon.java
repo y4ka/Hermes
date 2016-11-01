@@ -1,18 +1,19 @@
 package modele.scnObjects;
 
+import java.util.ArrayList;
+
 public class Pylon
 {
 	private int id;
 	private String name;
-	private int nbOwners;
-	private Team[] owners;
+	private boolean enabled;
+	private ArrayList<Team> owners = new ArrayList<Team>();
 	
-	public Pylon(int id, String name, boolean pylonEnabled)
+	public Pylon(int id, String name, boolean enabled)
 	{
 		this.id = id;
 		this.name = name;
-		this.nbOwners = 0;
-		this.owners = new Team[1];
+		this.enabled = enabled;
 	}
 
 	public int getId() {
@@ -32,24 +33,27 @@ public class Pylon
 	}
 
 	public int getNbOwners() {
-		return nbOwners;
+		return owners.size();
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setNbOwners(int nbOwners) {
-		this.nbOwners = nbOwners;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
-	public Team[] getOwners() {
+	public ArrayList<Team> getOwners() {
 		return owners;
 	}
 
-	public void setOwners(Team[] owner) {
-		this.owners = owner;
+	public void setOwners(ArrayList<Team> owners) {
+		this.owners = owners;
 	}
-	
-	//Provisioire
-	public void addTeam(Team team)
+
+	public void addOwner(Team team)
 	{
-		owners[0] = team;
+		owners.add(team);
 	}
 }
