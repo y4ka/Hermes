@@ -27,7 +27,7 @@ public class XmlTool
 	{
 		System.out.println("\n***** LOAD XML FILES *****");
 		
-		Scenario loadedScenario = new Scenario(2, 2, 2);
+		Scenario loadedScenario = null;
 		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try 
@@ -36,9 +36,28 @@ public class XmlTool
 			Document document = builder.parse(new File("scenario.xml"));
 			Element racine = document.getDocumentElement();
 			
-			//TEAMS:
+			//On recupere le nombre de Teams, de Players et de Pylons:
+			NodeList nodeListTeams = racine.getElementsByTagName("teams");
+			NodeList nodeListPlayers = racine.getElementsByTagName("players");
+			NodeList nodeListPylons = racine.getElementsByTagName("pylons");
+			Element teams = (Element) nodeListTeams.item(0);
+			Element players = (Element) nodeListPlayers.item(0);
+			Element pylons = (Element) nodeListPylons.item(0);
+			
+			int nbTeams = Integer.parseInt(teams.getAttribute("nbTeams"));
+			int nbPlayers = Integer.parseInt(players.getAttribute("nbPlayers"));
+			int nbPylons = Integer.parseInt(pylons.getAttribute("nbPylons"));
+			
+			System.out.println("nbTeams: "+teams.getAttribute("nbTeams"));
+			System.out.println("nbPlayers: "+players.getAttribute("nbPlayers"));
+			System.out.println("nbPylons: "+pylons.getAttribute("nbPylons"));
+			
+			//On crée notre objet scenario:
+			loadedScenario = new Scenario(nbPylons, nbPlayers, nbTeams);
+			
+			//PARSE TEAMS:
 			NodeList listeTeams = racine.getElementsByTagName("team");
-			for (int i = 0 ; i < listeTeams.getLength() ; i++) 
+			for (int i = 0 ; i < listeTeams.getLength() ; i++)
 			{
 				Element team = (Element) listeTeams.item(i);
 				NodeList teamShortName = team.getElementsByTagName("teamShortName");
@@ -56,7 +75,7 @@ public class XmlTool
 				loadedScenario.addTeam(scnTeam);
 			}
 			
-			//PLAYERS:
+			//PARSE PLAYERS:
 			NodeList listePlayers = racine.getElementsByTagName("player");
 			for (int i = 0 ; i < listePlayers.getLength() ; i++) 
 			{
@@ -74,7 +93,7 @@ public class XmlTool
 			}
 			
 			
-			//PYLONS:
+			//PARSE PYLONS:
 			NodeList listePylons = racine.getElementsByTagName("pylon");
 			for (int i = 0 ; i < listePylons.getLength() ; i++) 
 			{

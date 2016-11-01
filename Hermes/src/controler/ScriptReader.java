@@ -80,6 +80,7 @@ public class ScriptReader
 		loadScript("scenario.js");
 	}
 	
+	@Deprecated
 	public void loadObjects()
 	{
 		System.out.println("\n***** LOAD SCENARIO OBJECTS *****");
@@ -109,6 +110,19 @@ public class ScriptReader
 		
 		//Ajout des objets dans le moteur:
 		moteur.put("scenario", scenario);
+	}
+	
+	public boolean injectScenarioIntoScript(Scenario scenario)
+	{
+		if (moteur != null)
+		{
+			moteur.put("scenario", scenario);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	private void loadEngine()

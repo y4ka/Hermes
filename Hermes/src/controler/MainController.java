@@ -6,6 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import modele.Modele;
+import modele.scnObjects.Scenario;
 import modele.tools.XmlTool;
 import vue.View;
 
@@ -36,11 +37,8 @@ public class MainController implements ActionListener
 		//Initialisation du ScriptReader:
 		scriptReader.init();
 		
-		//Recuperation des données du fichier XML:
-		xmlTool.getScenarioParameterFile("scenario.xml");
-		
 		//Chargement des scnObjects:
-		scriptReader.loadObjects();
+		//scriptReader.loadObjects();  //<- A REMPLACER
 		
 		//Creation du Timer:
 		task = new TimerTask()
@@ -77,7 +75,14 @@ public class MainController implements ActionListener
 
 	public void initModel()
 	{
+		//Recuperation des données du fichier XML:
+		Scenario scenarioLoaded = xmlTool.getScenarioParameterFile("scenario.xml");
 		
+		//Ajout des données récupérées au modèle:
+		model.addScenario(scenarioLoaded);
+		
+		//Injection des données récupérées dans le script:
+		scriptReader.injectScenarioIntoScript(scenarioLoaded);
 	}
 
 	public void actionPerformed(ActionEvent evt) 
