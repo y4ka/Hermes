@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import modele.scnObjects.Player;
+import modele.scnObjects.Pylon;
 import modele.scnObjects.Scenario;
 import modele.scnObjects.Team;
 
@@ -33,7 +34,7 @@ public class XmlTool
 		try 
 		{
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document document = builder.parse(new File("scenario.xml"));
+			Document document = builder.parse(new File(xmlFile));
 			Element racine = document.getDocumentElement();
 			
 			//On recupere le nombre de Teams, de Players et de Pylons:
@@ -108,6 +109,9 @@ public class XmlTool
 				System.out.println("-> Pylon "+scnPylonId);
 				System.out.println(" -> "+scnPylonName);
 				System.out.println(" -> "+scnEnabled);
+				
+				Pylon scnPylon = new Pylon(scnPylonId, scnPylonName, scnEnabled);
+				loadedScenario.addPylon(scnPylon);
 			}
 			
 		} catch (final ParserConfigurationException e) {

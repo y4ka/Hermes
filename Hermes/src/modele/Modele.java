@@ -16,5 +16,7 @@ public class Modele extends Observable
 	public void addScenario(Scenario newScenario)
 	{
 		this.scenarioLoaded = newScenario;
+		setChanged();
+		notifyObservers(newScenario);
 	}
 }
