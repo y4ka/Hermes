@@ -1,4 +1,5 @@
 <scenario>
+
     <teams nbTeams="2">
         <team teamId="0">
             <teamShortName>AAC</teamShortName>
@@ -9,17 +10,26 @@
             <teamName>Rasen Katon</teamName>
         </team>
     </teams>
-    <players nbPlayers="3">
+    
+    <players nbPlayers="4">
     	<player playerId="0">
     		<playerName>Evergnault</playerName>
+    		<teamId>0</teamId>
     	</player>
     	<player playerId="1">
     		<playerName>PapaOurs</playerName>
+    		<teamId>0</teamId>
     	</player>
     	<player playerId="2">
     		<playerName>Vincent</playerName>
+    		<teamId>0</teamId>
+    	</player>
+    	<player playerId="3">
+    		<playerName>RKPlayer</playerName>
+    		<teamId>1</teamId>
     	</player>
     </players>
+    
     <pylons nbPylons="2">
     	<pylon pylonId="0">
     		<pylonName>A Site</pylonName>
@@ -30,4 +40,5 @@
     		<enabled>false</enabled>
     	</pylon>
     </pylons>
+    
 </scenario>

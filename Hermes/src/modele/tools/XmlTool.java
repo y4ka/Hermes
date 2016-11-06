@@ -82,15 +82,19 @@ public class XmlTool
 			{
 				Element player = (Element) listePlayers.item(i);
 				NodeList playerName = player.getElementsByTagName("playerName");
+				NodeList teamId = player.getElementsByTagName("teamId");
 				
 				int scnPlayerId = Integer.parseInt(player.getAttribute("playerId"));
 				String scnPlayerName = playerName.item(0).getTextContent();
+				int scnTeamId = Integer.parseInt(teamId.item(0).getTextContent());
 				
 				System.out.println("-> Player "+scnPlayerId);
 				System.out.println(" -> "+scnPlayerName);
+				System.out.println(" -> "+scnTeamId);
 				
 				Player scnPlayer = new Player(scnPlayerId, scnPlayerName);
 				loadedScenario.addPlayer(scnPlayer);
+				loadedScenario.getTeams()[scnTeamId].addPlayer(scnPlayer);
 			}
 			
 			

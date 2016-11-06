@@ -44,6 +44,10 @@ public class Team
 		this.shortName = shortName;
 	}
 	
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+
 	public void addPlayer(Player player)
 	{
 		players.add(player);

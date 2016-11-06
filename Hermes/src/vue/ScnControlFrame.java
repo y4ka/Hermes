@@ -74,7 +74,7 @@ public class ScnControlFrame extends JFrame {
 			JPanel panelPlayer = new JPanel();
 			panelPlayer.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Player no "+playerId, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panelPlayer.setLayout(new GridLayout(0, 1, 0, 0));
-			JLabel labelPlayerName = new JLabel("Name: "+playerName);
+			JLabel labelPlayerName = new JLabel("<html><u>Name:</u> "+playerName+"</html>");
 			
 			panelPlayer.add(labelPlayerName);
 			
@@ -94,8 +94,8 @@ public class ScnControlFrame extends JFrame {
 			JPanel panelPylons = new JPanel();
 			panelPylons.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Pylon no "+pylonId, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panelPylons.setLayout(new GridLayout(0, 1, 0, 0));
-			JLabel labelPlayerName = new JLabel("Name: "+pylonName);
-			JLabel labelNbOwners = new JLabel("Nb Owners: "+nbOwners);
+			JLabel labelPlayerName = new JLabel("<html><u>Name:</u> "+pylonName+"</html>");
+			JLabel labelNbOwners = new JLabel("<html><u>Nb Owners:</u> "+nbOwners+"</html>");
 			
 			panelPylons.add(labelPlayerName);
 			panelPylons.add(labelNbOwners);
@@ -115,13 +115,22 @@ public class ScnControlFrame extends JFrame {
 			JPanel panelTeams = new JPanel();
 			panelTeams.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Pylon no "+teamId, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panelTeams.setLayout(new GridLayout(0, 1, 0, 0));
-			JLabel labelTeamName = new JLabel("Name: "+teamName);
-			JLabel labelTeamShortName = new JLabel("Short Name: "+teamShortName);
-			JLabel labelTeamNbPlayers = new JLabel("Nb Players: "+teamNbPlayers);
+			JLabel labelTeamName = new JLabel("<html><u>Name:</u> "+teamName+"</html>");
+			JLabel labelTeamShortName = new JLabel("<html><u>Short Name:</u> "+teamShortName+"</html>");
+			JLabel labelTeamNbPlayers = new JLabel("<html><u>Nb Players:</u> "+teamNbPlayers+"</html>");
 			
 			panelTeams.add(labelTeamName);
 			panelTeams.add(labelTeamShortName);
 			panelTeams.add(labelTeamNbPlayers);
+			
+			//Ajout des joueurs:
+			for (int j = 0 ; j < scenario.getTeams()[i].getPlayers().size() ; j++)
+			{
+				String playerName = scenario.getTeams()[i].getPlayers().get(j).getName();
+				JLabel labelPlayerName = new JLabel("- "+playerName);
+				panelTeams.add(labelPlayerName);
+			}
+			
 			
 			//Ajout des labels créés dynamiquement à la fenetre:
 			panelTeam.add(panelTeams);
