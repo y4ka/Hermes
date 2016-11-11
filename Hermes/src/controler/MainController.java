@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JButton;
+
 import modele.Modele;
 import modele.scnObjects.Scenario;
 import modele.tools.XmlTool;
@@ -87,6 +89,36 @@ public class MainController implements ActionListener
 
 	public void actionPerformed(ActionEvent evt) 
 	{
-		
+//		System.out.println("DA");
+//		if (evt.getSource().getClass().equals(JButton.class))
+//		{
+//			System.out.println("FROM BUTTON");
+//			JButton da = (JButton) evt.getSource();
+//			if ( da.getText().equals("Launch Scenario"))
+//			{
+//				System.out.println("LAUCHN SCENARIO");
+//			}
+//		}
 	}
+	
+	
+	
+//	
+//	 public class Controller {
+//	     Model m;
+//	     public ActionListener getDeleteListener () {
+//	         return new ActionListener() {
+//	             @Override public void actionPerformed (ActionEvent e) {
+//	                 m.deleteSomething();
+//	             }
+//	         };
+//	     }
+//	 }
+//	 
+//	 public class GUI extends JFrame {
+//	     JButton deleteButton; 
+//	     public GUI (View v, Controller c) {
+//	         deleteButton.addActionListener(c.getDeleteListener()); 
+//	     }
+//	 }
 }
