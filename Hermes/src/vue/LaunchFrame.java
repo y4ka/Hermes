@@ -51,10 +51,12 @@ public class LaunchFrame extends JFrame implements ActionListener {
 	private JButton btnBrowseXML;
 	private JTextPane statusTextPane;
 	private JButton btnLaunchScenario;
-	
-	private MainController controller;
 	private JButton btnLoadJavascript;
 	private JButton btnLoadXML;
+	
+	private MainController controller;
+	private File xmlFile;
+	private File jsFile;
 	
 	/**
 	 * Create the frame.
@@ -147,10 +149,10 @@ public class LaunchFrame extends JFrame implements ActionListener {
 			int result = fileChooserJavascript.showOpenDialog(this);
 			if (result == JFileChooser.APPROVE_OPTION) 
 			{
-			    File selectedFile = fileChooserJavascript.getSelectedFile();
-			    pathJavascript.setText(selectedFile.getName());
+			    jsFile = fileChooserJavascript.getSelectedFile();
+			    pathJavascript.setText(jsFile.getName());
 			    btnLoadJavascript.setEnabled(true);
-			    Logger.insertString("Javascript Scenario File selected: "+selectedFile, "INFO", statusTextPane);
+			    Logger.insertString("Javascript Scenario File selected: "+jsFile, "INFO", statusTextPane);
 			}
 		}
 		else if (e.getSource().equals(btnBrowseXML))
@@ -164,22 +166,39 @@ public class LaunchFrame extends JFrame implements ActionListener {
 			int result = fileChooserXML.showOpenDialog(this);
 			if (result == JFileChooser.APPROVE_OPTION) 
 			{
-			    File selectedFile = fileChooserXML.getSelectedFile();
-			    pathXML.setText(selectedFile.getName());
+			    xmlFile = fileChooserXML.getSelectedFile();
+			    pathXML.setText(xmlFile.getName());
 			    btnLoadXML.setEnabled(true);
-			    Logger.insertString("XML Parameter File selected: "+selectedFile, "INFO", statusTextPane);
+			    Logger.insertString("XML Parameter File selected: "+xmlFile, "INFO", statusTextPane);
 			}
 		}
 		else if (e.getSource().equals(btnLoadJavascript))
 		{
-			
+			if (jsFile != null)
+			{
+				controller.initScenario(jsFile.getAbsolutePath());
+				Logger.insertString("Scenario from Javascript file loaded", "INFO", statusTextPane);
+			}
+			else
+			{
+				Logger.insertString("Javascript File not selected", "ERROR", statusTextPane);
+			}
 		}
 		else if (e.getSource().equals(btnLoadXML))
 		{
-			
+			if (xmlFile != null)
+			{
+				controller.initModel(xmlFile.getAbsolutePath());
+				Logger.insertString("Data from XML file loaded", "INFO", statusTextPane);
+			}
+			else
+			{
+				Logger.insertString("XML file not selected", "ERROR", statusTextPane);
+			}
 		}
 		else if (e.getSource().equals(btnLaunchScenario))
 		{
+			controller.launch();
 			Logger.insertString("Launching scenario", "INFO", statusTextPane);
 		}
 	}

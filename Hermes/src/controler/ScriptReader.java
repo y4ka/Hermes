@@ -74,44 +74,6 @@ public class ScriptReader
 		}
 	}
 	
-	public void init()
-	{
-		loadEngine();
-		loadScript("scenario.js");
-	}
-	
-	@Deprecated
-	public void loadObjects()
-	{
-		System.out.println("\n***** LOAD SCENARIO OBJECTS *****");
-		
-		Player player = new Player(0, "Lolo");
-		Player player2 = new Player(1, "Bobby");
-		
-		Team team = new Team(0, "da", "AAC");
-		Team team2 = new Team(1, "da", "RK");
-		team.addPlayer(player);
-		team2.addPlayer(player2);
-		
-		Pylon pylon = new Pylon(0, "PYLON0", true);
-		Pylon pylon2 = new Pylon(1, "PYLON1", true);
-		Pylon pylon3 = new Pylon(2, "PYLON1", true);
-		pylon.addOwner(team);
-		pylon2.addOwner(team2);
-		
-		Scenario scenario = new Scenario(3, 2, 1);
-		scenario.addPylon(pylon);
-		scenario.addPylon(pylon2);
-		scenario.addPylon(pylon3);
-		scenario.addPlayer(player);
-		scenario.addPlayer(player2);
-		scenario.addTeam(team);
-		scenario.addTeam(team2);
-		
-		//Ajout des objets dans le moteur:
-		moteur.put("scenario", scenario);
-	}
-	
 	public boolean injectScenarioIntoScript(Scenario scenario)
 	{
 		if (moteur != null)
@@ -125,7 +87,7 @@ public class ScriptReader
 		}
 	}
 	
-	private void loadEngine()
+	public void loadEngine()
 	{
 		System.out.println("\n***** LOAD SCIPT ENGINE *****");
 		
@@ -156,7 +118,7 @@ public class ScriptReader
 		}
 	}
 	
-	private void loadScript(String scenarioFileName)
+	public void loadScript(String scenarioFileName)
 	{
 		System.out.println("\n***** LOAD SCRIPT FILE *****");
 		

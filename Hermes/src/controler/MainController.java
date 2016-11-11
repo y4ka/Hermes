@@ -27,21 +27,6 @@ public class MainController implements ActionListener
 	
 	public MainController()
 	{
-		this.initialisation();
-		//this.launch();
-		
-		//TEST SCENARIO:
-		//scriptReader.invokeButtonInput(0, "BLUE");
-	}
-	
-	public void initialisation()
-	{
-		//Initialisation du ScriptReader:
-		scriptReader.init();
-		
-		//Chargement des scnObjects:
-		//scriptReader.loadObjects();  //<- A REMPLACER
-		
 		//Creation du Timer:
 		task = new TimerTask()
 		{
@@ -52,6 +37,30 @@ public class MainController implements ActionListener
 				nbTick++;
 			}	
 		};
+		
+		//TEST SCENARIO:
+		//scriptReader.invokeButtonInput(0, "BLUE");
+	}
+	
+	public void initScenario(String fileName)
+	{
+		//Initialisation du ScriptReader:
+		scriptReader.loadEngine();
+		
+		//Chargement du fichier de Script
+		scriptReader.loadScript(fileName);
+	}
+	
+	public void initModel(String fileName)
+	{
+		//Recuperation des données du fichier XML:
+		Scenario scenarioLoaded = xmlTool.getScenarioParameterFile(fileName);
+		
+		//Ajout des données récupérées au modèle:
+		model.addScenario(scenarioLoaded);
+		
+		//Injection des données récupérées dans le script:
+		scriptReader.injectScenarioIntoScript(scenarioLoaded);
 	}
 	
 	public void launch()
@@ -73,18 +82,6 @@ public class MainController implements ActionListener
 	public void addView(View v)
 	{
 		this.view = v;
-	}
-
-	public void initModel()
-	{
-		//Recuperation des données du fichier XML:
-		Scenario scenarioLoaded = xmlTool.getScenarioParameterFile("scenario.xml");
-		
-		//Ajout des données récupérées au modèle:
-		model.addScenario(scenarioLoaded);
-		
-		//Injection des données récupérées dans le script:
-		scriptReader.injectScenarioIntoScript(scenarioLoaded);
 	}
 
 	public void actionPerformed(ActionEvent evt) 

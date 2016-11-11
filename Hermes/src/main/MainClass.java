@@ -20,7 +20,11 @@ public class MainClass
 		MainController controller = new MainController();
 		controller.addModel(model);
 		controller.addView(view);
-		controller.initModel();
+		
+		//Lancement sans IHM:
+		//controller.initScenario("scenario.js");
+		//controller.initModel("scenario.xml");
+		//controller.launch();
 
 		//Tell View about Controller 
 		view.addController(controller);
