@@ -113,7 +113,7 @@ public class ScnControlFrame extends JFrame {
 			int teamNbPlayers = scenario.getTeams()[i].getNbPlayers();
 			
 			JPanel panelTeams = new JPanel();
-			panelTeams.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Pylon no "+teamId, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			panelTeams.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Team no "+teamId, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panelTeams.setLayout(new GridLayout(0, 1, 0, 0));
 			JLabel labelTeamName = new JLabel("<html><u>Name:</u> "+teamName+"</html>");
 			JLabel labelTeamShortName = new JLabel("<html><u>Short Name:</u> "+teamShortName+"</html>");

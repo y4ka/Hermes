@@ -31,12 +31,6 @@ public class ScriptReader
 	{
 		try 
 		{
-			//moteur.eval(scriptString);
-
-			// On recupere les valeurs en sortie:
-			// Integer resultat = (Integer)moteur.get("newID");
-			// System.out.println("resultat = "+resultat);
-
 			// On teste la reception d'un message d'un pylone:
 			if (moteur instanceof Invocable) 
 			{
@@ -63,6 +57,10 @@ public class ScriptReader
 				Invocable moteurInvocable = (Invocable) moteur;
 				Object result = moteurInvocable.invokeFunction("tick", nbTick);
 				System.out.println("Tick = " + result);
+				
+				// On recupere les valeurs en sortie:
+				Scenario scenario = (Scenario)moteur.get("scenario");
+				//Integer resultat = (Integer)moteur.get("newID");
 			}
 			else 
 			{

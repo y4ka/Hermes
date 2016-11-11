@@ -7,5 +7,7 @@ function inputButton(idPylon, idButton)
 
 function tick(nbTick)
 {
-	return nbTick;	
+	scenario.getPlayers()[0].setName("TEST"+nbTick);
+
+	return scenario.getPlayers()[0].getName();
 }

@@ -105,6 +105,7 @@ public class LaunchFrame extends JFrame implements ActionListener {
 		pathXML.setColumns(10);
 		
 		btnBrowseXML = new JButton("...");
+		btnBrowseXML.setEnabled(false);
 		btnBrowseXML.addActionListener(this);
 		panelLoadXML.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelLoadXML.add(lblLoadXML);
@@ -177,6 +178,7 @@ public class LaunchFrame extends JFrame implements ActionListener {
 			if (jsFile != null)
 			{
 				controller.initScenario(jsFile.getAbsolutePath());
+				btnBrowseXML.setEnabled(true);
 				Logger.insertString("Scenario from Javascript file loaded", "INFO", statusTextPane);
 			}
 			else
