@@ -40,7 +40,7 @@ public class LaunchFrame extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTextField pathJavascript;
 	private JPanel loadPanel;
-	private JButton btnLoadJavascript;
+	private JButton btnBrowseJavascript;
 	private JPanel launchPanel;
 	private JPanel statusPanel;
 	private JLabel lblLoadJavascript;
@@ -48,11 +48,13 @@ public class LaunchFrame extends JFrame implements ActionListener {
 	private JPanel panelLoadXML;
 	private JLabel lblLoadXML;
 	private JTextField pathXML;
-	private JButton btnLoadXML;
+	private JButton btnBrowseXML;
 	private JTextPane statusTextPane;
 	private JButton btnLaunchScenario;
 	
 	private MainController controller;
+	private JButton btnLoadJavascript;
+	private JButton btnLoadXML;
 	
 	/**
 	 * Create the frame.
@@ -82,7 +84,12 @@ public class LaunchFrame extends JFrame implements ActionListener {
 		panelLoadJavascript.add(pathJavascript);
 		pathJavascript.setColumns(10);
 		
+		btnBrowseJavascript = new JButton("...");
+		btnBrowseJavascript.addActionListener(this);
+		panelLoadJavascript.add(btnBrowseJavascript);
+		
 		btnLoadJavascript = new JButton("Load");
+		btnLoadJavascript.setEnabled(false);
 		btnLoadJavascript.addActionListener(this);
 		panelLoadJavascript.add(btnLoadJavascript);
 		
@@ -95,11 +102,16 @@ public class LaunchFrame extends JFrame implements ActionListener {
 		pathXML.setEditable(false);
 		pathXML.setColumns(10);
 		
-		btnLoadXML = new JButton("Load");
-		btnLoadXML.addActionListener(this);
+		btnBrowseXML = new JButton("...");
+		btnBrowseXML.addActionListener(this);
 		panelLoadXML.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelLoadXML.add(lblLoadXML);
 		panelLoadXML.add(pathXML);
+		panelLoadXML.add(btnBrowseXML);
+		
+		btnLoadXML = new JButton("Load");
+		btnLoadXML.setEnabled(false);
+		btnLoadXML.addActionListener(this);
 		panelLoadXML.add(btnLoadXML);
 		
 		launchPanel = new JPanel();
@@ -124,7 +136,7 @@ public class LaunchFrame extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) 
 	{
-		if (e.getSource().equals(btnLoadJavascript))
+		if (e.getSource().equals(btnBrowseJavascript))
 		{
 			JFileChooser fileChooserJavascript = new JFileChooser();
 			fileChooserJavascript.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -137,10 +149,11 @@ public class LaunchFrame extends JFrame implements ActionListener {
 			{
 			    File selectedFile = fileChooserJavascript.getSelectedFile();
 			    pathJavascript.setText(selectedFile.getName());
+			    btnLoadJavascript.setEnabled(true);
 			    Logger.insertString("Javascript Scenario File selected: "+selectedFile, "INFO", statusTextPane);
 			}
 		}
-		else if (e.getSource().equals(btnLoadXML))
+		else if (e.getSource().equals(btnBrowseXML))
 		{
 			JFileChooser fileChooserXML = new JFileChooser();
 			fileChooserXML.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -153,8 +166,17 @@ public class LaunchFrame extends JFrame implements ActionListener {
 			{
 			    File selectedFile = fileChooserXML.getSelectedFile();
 			    pathXML.setText(selectedFile.getName());
+			    btnLoadXML.setEnabled(true);
 			    Logger.insertString("XML Parameter File selected: "+selectedFile, "INFO", statusTextPane);
 			}
+		}
+		else if (e.getSource().equals(btnLoadJavascript))
+		{
+			
+		}
+		else if (e.getSource().equals(btnLoadXML))
+		{
+			
 		}
 		else if (e.getSource().equals(btnLaunchScenario))
 		{
