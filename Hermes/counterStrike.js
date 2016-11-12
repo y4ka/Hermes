@@ -3,7 +3,7 @@ var bombExplosed = false;
 var pylonAmorced = '';
 var terroristWin = false;
 var counterTerroristWin = false;
-var bombTimer = 120;
+var bombTimer = 10;
 var ROUND_DURATION = 15;
  
 function inputButton(idPylon, colorButton)
@@ -13,6 +13,8 @@ function inputButton(idPylon, colorButton)
   	{
 		bombPlanted = true;
 		pylonAmorced = idPylon;
+		
+		return "Bombe posée sur le Pylone "+idPylon;
 	}
  
   	//Si la bombe est déja posée, appuyer sur le bouton la desamorce:
@@ -23,10 +25,14 @@ function inputButton(idPylon, colorButton)
 		{
 			//Bombe désamorcée:
 			counterTerroristWin = true;
+			
+			return "Bombe désamorcée, CT WIN";
+    	}
+    	else
+    	{
+    		return "On tente de désamorcer le mauvais Pylone";
     	}
   	}
-  	
-  	return "JS: PylonID: "+idPylon+" Button: "+colorButton;
 }
  
 function tick(nbTick)
@@ -42,6 +48,12 @@ function tick(nbTick)
     	{
 			bombExploded = true;
       		terroristWin = true;
+      		
+      		return "BOOM, EXPLOSION";
+    	}
+    	else
+    	{
+    		return "Bombe explose dans "+bombTimer+" secondes";
     	}
   	}
  
@@ -49,14 +61,18 @@ function tick(nbTick)
 	if(nbTick >= ROUND_DURATION)
   	{
 		counterTerroristWin = true;
+		return "Temps ecoule !";
   	}
-  	
-  	var endGame = victory();
+  	else
+  	{
+  		var remainingTime = ROUND_DURATION - nbTick;
+  		return "Temps restant: "+remainingTime;
+  	}
   	
   	return endGame;
 }
  
-function victory()
+function checkVictory()
 {
 	if(terroristWin == true || counterTerroristWin == true)
   	{

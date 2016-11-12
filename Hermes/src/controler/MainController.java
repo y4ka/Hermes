@@ -34,6 +34,7 @@ public class MainController implements ActionListener
 			public void run() 
 			{
 				scriptReader.invokeTick(nbTick);
+				scriptReader.checkVictory();
 				nbTick++;
 			}	
 		};

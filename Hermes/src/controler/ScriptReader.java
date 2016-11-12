@@ -56,11 +56,31 @@ public class ScriptReader
 			{
 				Invocable moteurInvocable = (Invocable) moteur;
 				Object result = moteurInvocable.invokeFunction("tick", nbTick);
-				System.out.println("Tick = " + result);
+				System.out.println(result);
 				
 				// On recupere les valeurs en sortie:
 				Scenario scenario = (Scenario)moteur.get("scenario"); //TODO Mettre à jour le modele
 				//Integer resultat = (Integer)moteur.get("newID");
+			}
+			else 
+			{
+				System.err.println("Le moteur n'implemente pas l'interface Invocable");
+			}
+
+		} catch (ScriptException | NoSuchMethodException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void checkVictory()
+	{
+		try 
+		{
+			if (moteur instanceof Invocable) 
+			{
+				Invocable moteurInvocable = (Invocable) moteur;
+				Object result = moteurInvocable.invokeFunction("checkVictory");
+				System.out.println("Victory: "+result);
 			}
 			else 
 			{
