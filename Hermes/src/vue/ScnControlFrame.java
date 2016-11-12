@@ -82,8 +82,6 @@ public class ScnControlFrame extends JFrame {
 			panelPlayers.add(panelPlayer);
 		}
 		
-		System.out.println("----->" +scenario.getNumberOfPylons());
-		
 		//Affichage dynamique des Pylons:
 		for (int i = 0 ; i < scenario.getNumberOfPylons() ; i++)
 		{

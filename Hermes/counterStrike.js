@@ -4,9 +4,9 @@ var pylonAmorced = '';
 var terroristWin = false;
 var counterTerroristWin = false;
 var bombTimer = 120;
-var ROUND_DURATION = 300;
+var ROUND_DURATION = 15;
  
-function inputButton(idPylon, idButton)
+function inputButton(idPylon, colorButton)
 {
 	//Si la bombe n'est pas encore posée, appuyer sur le bouton la pose:
     if (bombPlanted == false)
@@ -25,6 +25,8 @@ function inputButton(idPylon, idButton)
 			counterTerroristWin = true;
     	}
   	}
+  	
+  	return "JS: PylonID: "+idPylon+" Button: "+colorButton;
 }
  
 function tick(nbTick)

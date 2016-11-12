@@ -27,7 +27,7 @@ public class ScriptReader
 		
 	}
 	
-	public void invokeButtonInput(int idButton, String colorButton)
+	public void invokeButtonInput(int idPylon, String colorButton)
 	{
 		try 
 		{
@@ -35,8 +35,8 @@ public class ScriptReader
 			if (moteur instanceof Invocable) 
 			{
 				Invocable moteurInvocable = (Invocable) moteur;
-				Object result = moteurInvocable.invokeFunction("inputButton", idButton, colorButton);
-				System.out.println("resultat = " + result);
+				Object result = moteurInvocable.invokeFunction("inputButton", idPylon, colorButton);
+				System.out.println(result);
 			} 
 			else 
 			{
@@ -59,7 +59,7 @@ public class ScriptReader
 				System.out.println("Tick = " + result);
 				
 				// On recupere les valeurs en sortie:
-				Scenario scenario = (Scenario)moteur.get("scenario");
+				Scenario scenario = (Scenario)moteur.get("scenario"); //TODO Mettre à jour le modele
 				//Integer resultat = (Integer)moteur.get("newID");
 			}
 			else 

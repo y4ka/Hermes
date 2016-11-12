@@ -118,4 +118,9 @@ public class MainController implements ActionListener
 //	         deleteButton.addActionListener(c.getDeleteListener()); 
 //	     }
 //	 }
+	
+	public ScriptReader getScriptReader()
+	{
+		return scriptReader;
+	}
 }

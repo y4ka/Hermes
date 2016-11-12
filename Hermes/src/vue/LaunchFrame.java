@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Observable;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -30,9 +31,11 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import controler.MainController;
+import modele.scnObjects.Scenario;
 import modele.tools.Logger;
 
 import javax.swing.JScrollBar;
+
 import java.awt.Scrollbar;
 
 public class LaunchFrame extends JFrame implements ActionListener {

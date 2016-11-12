@@ -10,22 +10,26 @@ public class View implements Observer
 {
 	ScnControlFrame scnControlFrame;
 	LaunchFrame launchFrame;
+	InputFrame inputFrame;
 	
 	public View()
 	{
 		scnControlFrame = new ScnControlFrame();
 		launchFrame = new LaunchFrame();
+		inputFrame = new InputFrame();
 	}
 	
 	//Called from the Model
 	public void update(Observable obs, Object obj) 
 	{
 		scnControlFrame.update(obs, obj);
+		inputFrame.update(obs, obj);
 	}
 	
 	public void addController(MainController controller)
 	{
 		scnControlFrame.addController(controller);
 		launchFrame.addController(controller);
+		inputFrame.addController(controller);
 	}
 }
