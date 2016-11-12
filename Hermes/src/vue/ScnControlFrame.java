@@ -133,6 +133,9 @@ public class ScnControlFrame extends JFrame {
 			//Ajout des labels créés dynamiquement à la fenetre:
 			panelTeam.add(panelTeams);
 		}
+		
+		this.setVisible(false);
+		this.setVisible(true);
 	}
 	
 	public void addController(ActionListener controller)

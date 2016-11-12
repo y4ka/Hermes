@@ -92,7 +92,8 @@ public class InputFrame extends JFrame {
 			//Ajout des labels créés dynamiquement à la fenetre:
 			mainPanel.add(panelPylons);
 			
-			this.repaint();
+			this.setVisible(false);
+			this.setVisible(true);
 		}
 	}
 	
