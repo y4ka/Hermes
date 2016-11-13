@@ -16,80 +16,39 @@ import modele.scnObjects.Pylon;
 import modele.scnObjects.Scenario;
 import modele.scnObjects.Team;
 import modele.tools.FileTool;
+import modele.tools.Logger;
 
 public class ScriptReader 
 {
 	private ScriptEngine moteur;
 	private String scriptString;
+	private Invocable moteurInvocable;
 	
 	public ScriptReader()
 	{
 		
 	}
 	
-	public void invokeButtonInput(int idPylon, String colorButton)
+	public void invokeButtonInput(int idPylon, String colorButton) throws NoSuchMethodException, ScriptException
 	{
-		try 
-		{
-			// On teste la reception d'un message d'un pylone:
-			if (moteur instanceof Invocable) 
-			{
-				Invocable moteurInvocable = (Invocable) moteur;
-				Object result = moteurInvocable.invokeFunction("inputButton", idPylon, colorButton);
-				System.out.println(result);
-			} 
-			else 
-			{
-				System.err.println("Le moteur n'implemente pas l'interface Invocable");
-			}
-
-		} catch (ScriptException | NoSuchMethodException e) {
-			e.printStackTrace();
-		}
+		Object result = moteurInvocable.invokeFunction("inputButton", idPylon, colorButton);
+		System.out.println(result);
 	}
 	
-	public void invokeTick(int nbTick)
+	public void invokeTick(int nbTick) throws NoSuchMethodException, ScriptException
 	{
-		try 
-		{
-			if (moteur instanceof Invocable) 
-			{
-				Invocable moteurInvocable = (Invocable) moteur;
-				Object result = moteurInvocable.invokeFunction("tick", nbTick);
-				System.out.println(result);
-				
-				// On recupere les valeurs en sortie:
-				Scenario scenario = (Scenario)moteur.get("scenario"); //TODO Mettre à jour le modele
-				//Integer resultat = (Integer)moteur.get("newID");
-			}
-			else 
-			{
-				System.err.println("Le moteur n'implemente pas l'interface Invocable");
-			}
-
-		} catch (ScriptException | NoSuchMethodException e) {
-			e.printStackTrace();
-		}
+		Object result = moteurInvocable.invokeFunction("tick", nbTick);
+		System.out.println(result);
+		
+		// On recupere les valeurs en sortie:
+		Scenario scenario = (Scenario)moteur.get("scenario"); //TODO Mettre à jour le modele
+		//Integer resultat = (Integer)moteur.get("newID");
 	}
 	
-	public void checkVictory()
+	public void checkVictory() throws NoSuchMethodException, ScriptException
 	{
-		try 
-		{
-			if (moteur instanceof Invocable) 
-			{
-				Invocable moteurInvocable = (Invocable) moteur;
-				Object result = moteurInvocable.invokeFunction("checkVictory");
-				System.out.println("Victory: "+result);
-			}
-			else 
-			{
-				System.err.println("Le moteur n'implemente pas l'interface Invocable");
-			}
-
-		} catch (ScriptException | NoSuchMethodException e) {
-			e.printStackTrace();
-		}
+		Object result = moteurInvocable.invokeFunction("checkVictory");
+		System.out.println("Victory: "+result);
 	}
 	
 	public boolean injectScenarioIntoScript(Scenario scenario)
@@ -134,6 +93,17 @@ public class ScriptReader
 		{
 			System.out.println("Moteur "+engineName+" chargé.");
 		}
+		
+		//On vérifie si le moteur est Invocable:
+		if (moteur instanceof Invocable) 
+		{
+			moteurInvocable = (Invocable) moteur;
+		}
+		else 
+		{
+			System.err.println("Le moteur n'implemente pas l'interface Invocable");
+		}
+		
 	}
 	
 	public void loadScript(String scenarioFileName)

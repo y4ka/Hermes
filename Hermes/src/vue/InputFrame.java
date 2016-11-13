@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.script.ScriptException;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -104,7 +105,14 @@ public class InputFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				controller.getScriptReader().invokeButtonInput(pylonId, colorButton);
+				try 
+				{
+					controller.getScriptReader().invokeButtonInput(pylonId, colorButton);
+				}
+				catch (NoSuchMethodException | ScriptException e1) 
+				{
+					e1.printStackTrace();
+				}
 			}
 		};
 		

@@ -125,6 +125,7 @@ public class LaunchFrame extends JFrame implements ActionListener {
 		contentPane.add(launchPanel);
 		
 		btnLaunchScenario = new JButton("Launch Scenario");
+		btnLaunchScenario.setEnabled(false);
 		btnLaunchScenario.addActionListener(this);
 		launchPanel.add(btnLaunchScenario);
 		
@@ -194,6 +195,7 @@ public class LaunchFrame extends JFrame implements ActionListener {
 			if (xmlFile != null)
 			{
 				controller.initModel(xmlFile.getAbsolutePath());
+				btnLaunchScenario.setEnabled(true);
 				Logger.insertString("Data from XML file loaded", "INFO", statusTextPane);
 			}
 			else

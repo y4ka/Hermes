@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.script.ScriptException;
 import javax.swing.JButton;
 
 import modele.Modele;
@@ -33,9 +34,16 @@ public class MainController implements ActionListener
 			@Override
 			public void run() 
 			{
-				scriptReader.invokeTick(nbTick);
-				scriptReader.checkVictory();
-				nbTick++;
+				try 
+				{
+					scriptReader.invokeTick(nbTick);
+					scriptReader.checkVictory();
+					nbTick++;	
+				} 
+				catch (NoSuchMethodException | ScriptException e) 
+				{
+					e.printStackTrace();
+				}
 			}	
 		};
 		
