@@ -3,7 +3,7 @@ package modele.scnObjects;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class Scenario 
+public class Scenario
 {
 	private Pylon[] pylons;
 	private Player[] players;

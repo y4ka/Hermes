@@ -14,7 +14,7 @@ import modele.tools.XmlTool;
 import vue.View;
 
 
-public class MainController implements ActionListener 
+public class MainController
 {
 	
 	private Modele model;
@@ -92,41 +92,6 @@ public class MainController implements ActionListener
 	{
 		this.view = v;
 	}
-
-	public void actionPerformed(ActionEvent evt) 
-	{
-//		System.out.println("DA");
-//		if (evt.getSource().getClass().equals(JButton.class))
-//		{
-//			System.out.println("FROM BUTTON");
-//			JButton da = (JButton) evt.getSource();
-//			if ( da.getText().equals("Launch Scenario"))
-//			{
-//				System.out.println("LAUCHN SCENARIO");
-//			}
-//		}
-	}
-	
-	
-	
-//	
-//	 public class Controller {
-//	     Model m;
-//	     public ActionListener getDeleteListener () {
-//	         return new ActionListener() {
-//	             @Override public void actionPerformed (ActionEvent e) {
-//	                 m.deleteSomething();
-//	             }
-//	         };
-//	     }
-//	 }
-//	 
-//	 public class GUI extends JFrame {
-//	     JButton deleteButton; 
-//	     public GUI (View v, Controller c) {
-//	         deleteButton.addActionListener(c.getDeleteListener()); 
-//	     }
-//	 }
 	
 	public ScriptReader getScriptReader()
 	{

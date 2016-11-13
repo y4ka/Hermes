@@ -29,6 +29,10 @@ public class ScriptReader
 		
 	}
 	
+//	   ===================================================
+//	   ===== ===== METHODES D'APPEL JAVASCRIPT ===== =====
+//	   ===================================================
+	
 	public void invokeButtonInput(int idPylon, String colorButton) throws NoSuchMethodException, ScriptException
 	{
 		Object result = moteurInvocable.invokeFunction("inputButton", idPylon, colorButton);
@@ -50,6 +54,11 @@ public class ScriptReader
 		Object result = moteurInvocable.invokeFunction("checkVictory");
 		System.out.println("Victory: "+result);
 	}
+	
+	
+//	   =================================================
+//	   ===== ===== METHODES D'INITIALISATION ===== =====
+//	   =================================================
 	
 	public boolean injectScenarioIntoScript(Scenario scenario)
 	{

@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 
+import controler.MainController;
 import modele.scnObjects.Scenario;
 
 import java.awt.Color;
@@ -138,8 +139,8 @@ public class ScnControlFrame extends JFrame {
 		this.setVisible(true);
 	}
 	
-	public void addController(ActionListener controller)
+	public void addController(MainController controller)
 	{
-		//button.addActionListener(controller);
+		
 	}
 }
