@@ -8,6 +8,7 @@ import javax.script.ScriptException;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
@@ -118,8 +119,8 @@ public class InputFrame extends JFrame {
 			//Ajout des labels créés dynamiquement à la fenetre:
 			mainPanel.add(panelPylons);
 			
-			this.setVisible(false);
-			this.setVisible(true);
+			//On rafraichit la fenetre:
+			SwingUtilities.updateComponentTreeUI(this);
 		}
 	}
 	

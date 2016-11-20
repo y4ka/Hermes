@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.GridLayout;
@@ -146,8 +147,8 @@ public class ScnControlFrame extends JFrame {
 			panelTeam.add(panelTeams);
 		}
 		
-		this.setVisible(false);
-		this.setVisible(true);
+		//On rafraichit la fenetre:
+		SwingUtilities.updateComponentTreeUI(this);
 	}
 	
 	public void addController(MainController controller)
