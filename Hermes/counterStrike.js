@@ -39,6 +39,11 @@ function inputTarget(idPylon)
 {
 	return "Unused function";
 }
+
+function inputKeyboard(idPylon, keyboardString)
+{
+	return "Unused function - "+keyboardString;
+}
  
 function tick(nbTick)
 {

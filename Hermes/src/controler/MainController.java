@@ -33,9 +33,9 @@ public class MainController
 			{
 				try 
 				{
-					scriptReader.checkVictory();
 					scriptReader.invokeTick(nbTick);
-					nbTick++;	
+					scriptReader.checkVictory();
+					nbTick++;
 				} 
 				catch (NoSuchMethodException | ScriptException e) 
 				{

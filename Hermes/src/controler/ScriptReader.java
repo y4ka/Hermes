@@ -49,6 +49,12 @@ public class ScriptReader
 		Logger.instance.log(""+result);
 	}
 	
+	public void invokeKeyboardInput(int idPylon, String keyboardString) throws NoSuchMethodException, ScriptException
+	{
+		Object result = moteurInvocable.invokeFunction("inputKeyboard", idPylon, keyboardString);
+		Logger.instance.log(""+result);
+	}
+	
 	public void invokeTick(int nbTick) throws NoSuchMethodException, ScriptException
 	{
 		Object result = moteurInvocable.invokeFunction("tick", nbTick);

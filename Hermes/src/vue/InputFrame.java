@@ -8,6 +8,7 @@ import javax.script.ScriptException;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -85,6 +86,9 @@ public class InputFrame extends JFrame {
 			JButton buttonGreen = new JButton("Green");
 			JLabel labelHitDetector = new JLabel("<html><u>Target:</u></html>");
 			JButton buttonHitDetector = new JButton("Hit Detector");
+			JLabel labelKeyboard = new JLabel("<html><u>Keyboard:</u></html>");
+			JTextField textFieldKeyboard = new JTextField();
+			JButton buttonKeyboard = new JButton("Envoyer");
 			
 			//Creation des Listeners des boutons:
 			buttonRed.addActionListener(createDynamicActionListeners(pylonId, "RED"));
@@ -110,10 +114,31 @@ public class InputFrame extends JFrame {
 				}
 			});
 			
+			//Creation du Listener du keyboard:
+			buttonKeyboard.addActionListener(new ActionListener() 
+			{
+				public void actionPerformed(ActionEvent e) 
+				{
+					try 
+					{
+						controller.getScriptReader().invokeKeyboardInput(pylonId, textFieldKeyboard.getText());
+					}
+					catch (NoSuchMethodException | ScriptException e1) 
+					{
+						e1.printStackTrace();
+					}
+				}
+			});
+			
 			//Activation - Desactivation des composants:
-			if (hitDetectorEnabled == false)
+			if (hitDetectorEnabled == false || enabled == false)
 			{
 				buttonHitDetector.setEnabled(false);
+			}
+			if (keyboardEnabled == false || enabled == false)
+			{
+				textFieldKeyboard.setEnabled(false);
+				buttonKeyboard.setEnabled(false);
 			}
 			
 			//Ajout des composants au panel:
@@ -126,6 +151,9 @@ public class InputFrame extends JFrame {
 			panelPylons.add(buttonGreen);
 			panelPylons.add(labelHitDetector);
 			panelPylons.add(buttonHitDetector);
+			panelPylons.add(labelKeyboard);
+			panelPylons.add(textFieldKeyboard);
+			panelPylons.add(buttonKeyboard);
 			
 			//Ajout des composants créés dynamiquement à la fenetre:
 			mainPanel.add(panelPylons);

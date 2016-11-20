@@ -49,7 +49,7 @@
     		<pylonName>B Site</pylonName>
     		<enabled>false</enabled>
     		<hitDetectorEnabled>false</hitDetectorEnabled>
-    		<keyboardEnabled>true</keyboardEnabled>
+    		<keyboardEnabled>false</keyboardEnabled>
     	</pylon>
     </pylons>
     
