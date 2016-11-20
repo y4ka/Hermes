@@ -11,6 +11,7 @@ import javax.script.ScriptEngineFactory;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import modele.Modele;
 import modele.scnObjects.Player;
 import modele.scnObjects.Pylon;
 import modele.scnObjects.Scenario;
@@ -23,6 +24,8 @@ public class ScriptReader
 	private ScriptEngine moteur;
 	private String scriptString;
 	private Invocable moteurInvocable;
+	
+	private Modele modele;
 	
 	public ScriptReader()
 	{
@@ -46,7 +49,7 @@ public class ScriptReader
 		
 		// On recupere les valeurs en sortie:
 		Scenario scenario = (Scenario)moteur.get("scenario"); //TODO Mettre à jour le modele
-		//Integer resultat = (Integer)moteur.get("newID");
+		modele.addScenario(scenario);
 	}
 	
 	public void checkVictory() throws NoSuchMethodException, ScriptException
@@ -132,5 +135,10 @@ public class ScriptReader
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public void addModele(Modele modele)
+	{
+		this.modele = modele;
 	}
 }

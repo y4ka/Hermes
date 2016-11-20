@@ -86,6 +86,7 @@ public class MainController
 	public void addModel(Modele m)
 	{
 		this.model = m;
+		this.scriptReader.addModele(m);
 	}
 
 	public void addView(View v)
