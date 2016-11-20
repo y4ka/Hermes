@@ -21,6 +21,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import modele.tools.ViewLogger;
 import controler.MainController;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 
@@ -45,6 +47,7 @@ public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 	private File xmlFile;
 	private File jsFile;
 	private JButton btnStopScenario;
+	private JScrollPane scrollPane;
 	
 	/**
 	 * Create the frame.
@@ -122,11 +125,14 @@ public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 		statusPanel = new JPanel();
 		statusPanel.setBorder(new TitledBorder(null, "Status", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.add(statusPanel);
-		statusPanel.setLayout(new BorderLayout(0, 0));
 		
 		statusTextPane = new JTextPane();
-		statusPanel.add(statusTextPane);
 		setVisible(true);
+		statusPanel.setLayout(new BorderLayout(0, 0));
+		
+		scrollPane = new JScrollPane(statusTextPane);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		statusPanel.add(scrollPane);
 		
 		//Add TextPane to Logger listener list:
 		Logger.instance.addListener(statusTextPane);
