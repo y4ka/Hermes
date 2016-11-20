@@ -114,6 +114,8 @@ public class ScnControlFrame extends JFrame {
 			int teamId = scenario.getTeams()[i].getId();
 			String teamName = scenario.getTeams()[i].getName();
 			String teamShortName = scenario.getTeams()[i].getShortName();
+			boolean teamSpawnAllowed = scenario.getTeams()[i].isSpawnAllowed();
+			int teamSpawnNumber = scenario.getTeams()[i].getSpawnNumber();
 			int teamNbPlayers = scenario.getTeams()[i].getNbPlayers();
 			
 			JPanel panelTeams = new JPanel();
@@ -121,10 +123,14 @@ public class ScnControlFrame extends JFrame {
 			panelTeams.setLayout(new GridLayout(0, 1, 0, 0));
 			JLabel labelTeamName = new JLabel("<html><u>Name:</u> "+teamName+"</html>");
 			JLabel labelTeamShortName = new JLabel("<html><u>Short Name:</u> "+teamShortName+"</html>");
+			JLabel labelTeamSpawnAllowed = new JLabel("<html><u>Spawn Allowed:</u> "+teamSpawnAllowed+"</html>");
+			JLabel labelTeamSpawnNumber = new JLabel("<html><u>Spawn Number:</u> "+teamSpawnNumber+"</html>");
 			JLabel labelTeamNbPlayers = new JLabel("<html><u>Nb Players:</u> "+teamNbPlayers+"</html>");
 			
 			panelTeams.add(labelTeamName);
 			panelTeams.add(labelTeamShortName);
+			panelTeams.add(labelTeamSpawnAllowed);
+			panelTeams.add(labelTeamSpawnNumber);
 			panelTeams.add(labelTeamNbPlayers);
 			
 			//Ajout des joueurs:

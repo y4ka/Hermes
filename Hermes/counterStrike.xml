@@ -4,14 +4,18 @@
         <team teamId="0">
             <teamShortName>AAC</teamShortName>
             <teamName>Association Airsoft Celloise</teamName>
+            <spawnAllowed>true</spawnAllowed>
+            <spawnNumber>10</spawnNumber>
         </team>
         <team teamId="1">
             <teamShortName>RK</teamShortName>
             <teamName>Rasen Katon</teamName>
+            <spawnAllowed>true</spawnAllowed>
+            <spawnNumber>10</spawnNumber>
         </team>
     </teams>
     
-    <players nbPlayers="4">
+    <players nbPlayers="5">
     	<player playerId="0">
     		<playerName>Evergnault</playerName>
     		<teamId>0</teamId>
@@ -26,6 +30,10 @@
     	</player>
     	<player playerId="3">
     		<playerName>RKPlayer</playerName>
+    		<teamId>1</teamId>
+    	</player>
+    	<player playerId="4">
+    		<playerName>RKPlayer 2</playerName>
     		<teamId>1</teamId>
     	</player>
     </players>

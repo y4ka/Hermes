@@ -7,13 +7,17 @@ public class Team
 	private int id;
 	private String name;
 	private String shortName;
+	private boolean spawnAllowed;
+	private int spawnNumber;
 	private ArrayList<Player> players = new ArrayList<Player>();
 	
-	public Team(int id, String name, String shortName)
+	public Team(int id, String name, String shortName, boolean spawnAllowed, int spawnNumber)
 	{
 		this.id = id;
 		this.name = name;
 		this.shortName = shortName;
+		this.spawnAllowed = spawnAllowed;
+		this.spawnNumber = spawnNumber;
 	}
 
 	public int getId() {
@@ -44,6 +48,22 @@ public class Team
 		this.shortName = shortName;
 	}
 	
+	public boolean isSpawnAllowed() {
+		return spawnAllowed;
+	}
+
+	public void setSpawnAllowed(boolean spawnAllowed) {
+		this.spawnAllowed = spawnAllowed;
+	}
+
+	public int getSpawnNumber() {
+		return spawnNumber;
+	}
+
+	public void setSpawnNumber(int spawnNumber) {
+		this.spawnNumber = spawnNumber;
+	}
+
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}

@@ -63,16 +63,23 @@ public class XmlTool
 				Element team = (Element) listeTeams.item(i);
 				NodeList teamShortName = team.getElementsByTagName("teamShortName");
 				NodeList teamName = team.getElementsByTagName("teamName");
+				NodeList spawnAllowed = team.getElementsByTagName("spawnAllowed");
+				NodeList spawnNumber = team.getElementsByTagName("spawnNumber");
 				
 				int scnTeamId = Integer.parseInt(team.getAttribute("teamId"));
 				String scnTeamShortName = teamShortName.item(0).getTextContent();
 				String scnTeamName = teamName.item(0).getTextContent();
+				boolean scnSpawnAllowed = Boolean.parseBoolean(spawnAllowed.item(0).getTextContent());
+				int scnSpawnNumber = Integer.parseInt(spawnNumber.item(0).getTextContent());
 				
 				System.out.println("-> Team "+scnTeamId);
 				System.out.println(" -> "+scnTeamShortName);
 				System.out.println(" -> "+scnTeamName);
+				System.out.println(" -> "+scnSpawnAllowed);
+				System.out.println(" -> "+scnSpawnNumber);
 				
-				Team scnTeam = new Team(scnTeamId, scnTeamName, scnTeamShortName);
+				
+				Team scnTeam = new Team(scnTeamId, scnTeamName, scnTeamShortName, scnSpawnAllowed, scnSpawnNumber);
 				loadedScenario.addTeam(scnTeam);
 			}
 			
