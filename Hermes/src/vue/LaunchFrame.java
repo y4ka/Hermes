@@ -60,6 +60,7 @@ public class LaunchFrame extends JFrame implements ActionListener {
 	private MainController controller;
 	private File xmlFile;
 	private File jsFile;
+	private JButton btnStopScenario;
 	
 	/**
 	 * Create the frame.
@@ -128,6 +129,11 @@ public class LaunchFrame extends JFrame implements ActionListener {
 		btnLaunchScenario.setEnabled(false);
 		btnLaunchScenario.addActionListener(this);
 		launchPanel.add(btnLaunchScenario);
+		
+		btnStopScenario = new JButton("Stop Scenario");
+		btnStopScenario.addActionListener(this);
+		btnStopScenario.setEnabled(false);
+		launchPanel.add(btnStopScenario);
 		
 		statusPanel = new JPanel();
 		statusPanel.setBorder(new TitledBorder(null, "Status", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -205,8 +211,15 @@ public class LaunchFrame extends JFrame implements ActionListener {
 		}
 		else if (e.getSource().equals(btnLaunchScenario))
 		{
-			controller.launch();
+			controller.launchTimer();
+			btnStopScenario.setEnabled(true);
 			Logger.insertString("Launching scenario", "INFO", statusTextPane);
+		}
+		else if (e.getSource().equals(btnStopScenario))
+		{
+			controller.stopTimer();
+			btnLaunchScenario.setEnabled(false);
+			Logger.insertString("Stopping scenario", "INFO", statusTextPane);
 		}
 	}
 	

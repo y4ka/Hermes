@@ -26,10 +26,11 @@ public class ScriptReader
 	private Invocable moteurInvocable;
 	
 	private Modele modele;
+	private MainController controller;
 	
-	public ScriptReader()
+	public ScriptReader(MainController controller)
 	{
-		
+		this.controller = controller;
 	}
 	
 //	   ===================================================
@@ -47,15 +48,22 @@ public class ScriptReader
 		Object result = moteurInvocable.invokeFunction("tick", nbTick);
 		System.out.println(result);
 		
-		// On recupere les valeurs en sortie:
-		Scenario scenario = (Scenario)moteur.get("scenario"); //TODO Mettre à jour le modele
+		// On recupere les valeurs en sortie et on met à jour le modèle:
+		Scenario scenario = (Scenario)moteur.get("scenario");
 		modele.addScenario(scenario);
 	}
 	
 	public void checkVictory() throws NoSuchMethodException, ScriptException
 	{
 		Object result = moteurInvocable.invokeFunction("checkVictory");
-		System.out.println("Victory: "+result);
+		
+		boolean booleanResult = (Boolean) result;
+		
+		if (booleanResult == true)
+		{
+			System.out.println("Victory: "+result);
+			controller.stopTimer();
+		}
 	}
 	
 	

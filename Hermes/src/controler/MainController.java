@@ -1,12 +1,9 @@
 package controler;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.script.ScriptException;
-import javax.swing.JButton;
 
 import modele.Modele;
 import modele.scnObjects.Scenario;
@@ -20,7 +17,7 @@ public class MainController
 	private Modele model;
 	private View view;
 	
-	private ScriptReader scriptReader =  new ScriptReader();
+	private ScriptReader scriptReader =  new ScriptReader(this);
 	private XmlTool xmlTool = new XmlTool();
 	private TimerTask task;
 	private Timer timer = new Timer();
@@ -44,12 +41,17 @@ public class MainController
 				{
 					e.printStackTrace();
 				}
-			}	
+			}
+			
 		};
 		
 		//TEST SCENARIO:
 		//scriptReader.invokeButtonInput(0, "BLUE");
 	}
+	
+//	   =================================================
+//	   ===== ===== METHODES D'INITIALISATION ===== =====
+//	   =================================================
 	
 	public void initScenario(String fileName)
 	{
@@ -72,17 +74,6 @@ public class MainController
 		scriptReader.injectScenarioIntoScript(scenarioLoaded);
 	}
 	
-	public void launch()
-	{
-		//Lancement du Timer:
-		timer.scheduleAtFixedRate(task, 0, 1000);
-	}
-	
-	public void messageReceived()
-	{
-		
-	}
-	
 	public void addModel(Modele m)
 	{
 		this.model = m;
@@ -92,6 +83,31 @@ public class MainController
 	public void addView(View v)
 	{
 		this.view = v;
+	}
+	
+//	   =========================================
+//	   ===== ===== METHODES DU TIMER ===== =====
+//	   =========================================
+	
+	public void launchTimer()
+	{
+		//Lancement du Timer:
+		timer.scheduleAtFixedRate(task, 0, 1000);
+	}
+	
+	public void stopTimer()
+	{
+		//Fin du Timer:
+		timer.cancel();
+	}
+	
+//	   =======================================
+//	   ===== ===== AUTRES METHODES ===== =====
+//	   =======================================	
+	
+	public void messageReceived()
+	{
+		
 	}
 	
 	public ScriptReader getScriptReader()
