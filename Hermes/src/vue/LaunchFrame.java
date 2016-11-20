@@ -1,45 +1,28 @@
 package vue;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.URISyntaxException;
-import java.util.Observable;
 
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
-import javax.swing.JFileChooser;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 
+import modele.tools.ViewLogger;
 import controler.MainController;
-import modele.scnObjects.Scenario;
-import modele.tools.Logger;
 
-import javax.swing.JScrollBar;
-
-import java.awt.Scrollbar;
-
-public class LaunchFrame extends JFrame implements ActionListener {
+public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 
 	private JPanel contentPane;
 	private JTextField pathJavascript;
@@ -145,7 +128,8 @@ public class LaunchFrame extends JFrame implements ActionListener {
 		statusPanel.add(statusTextPane);
 		setVisible(true);
 		
-		
+		//Add TextPane to Logger listener list:
+		Logger.instance.addListener(statusTextPane);
 	}
 
 	public void actionPerformed(ActionEvent e) 
@@ -174,7 +158,7 @@ public class LaunchFrame extends JFrame implements ActionListener {
 			    jsFile = fileChooserJavascript.getSelectedFile();
 			    pathJavascript.setText(jsFile.getName());
 			    btnLoadJavascript.setEnabled(true);
-			    Logger.insertString("Javascript Scenario File selected: "+jsFile, "INFO", statusTextPane);
+			    Logger.instance.log("Javascript Scenario File selected: "+jsFile);
 			}
 		}
 		else if (e.getSource().equals(btnBrowseXML))
@@ -191,7 +175,7 @@ public class LaunchFrame extends JFrame implements ActionListener {
 			    xmlFile = fileChooserXML.getSelectedFile();
 			    pathXML.setText(xmlFile.getName());
 			    btnLoadXML.setEnabled(true);
-			    Logger.insertString("XML Parameter File selected: "+xmlFile, "INFO", statusTextPane);
+			    Logger.instance.log("XML Parameter File selected: "+xmlFile);
 			}
 		}
 		else if (e.getSource().equals(btnLoadJavascript))
@@ -200,11 +184,11 @@ public class LaunchFrame extends JFrame implements ActionListener {
 			{
 				controller.initScenario(jsFile.getAbsolutePath());
 				btnBrowseXML.setEnabled(true);
-				Logger.insertString("Scenario from Javascript file loaded", "INFO", statusTextPane);
+				Logger.instance.log("Scenario from Javascript file loaded");
 			}
 			else
 			{
-				Logger.insertString("Javascript File not selected", "ERROR", statusTextPane);
+				Logger.instance.log("Javascript File not selected");
 			}
 		}
 		else if (e.getSource().equals(btnLoadXML))
@@ -213,29 +197,35 @@ public class LaunchFrame extends JFrame implements ActionListener {
 			{
 				controller.initModel(xmlFile.getAbsolutePath());
 				btnLaunchScenario.setEnabled(true);
-				Logger.insertString("Data from XML file loaded", "INFO", statusTextPane);
+				Logger.instance.log("Data from XML file loaded");
 			}
 			else
 			{
-				Logger.insertString("XML file not selected", "ERROR", statusTextPane);
+				Logger.instance.log("XML file not selected");
 			}
 		}
 		else if (e.getSource().equals(btnLaunchScenario))
 		{
 			controller.launchTimer();
 			btnStopScenario.setEnabled(true);
-			Logger.insertString("Launching scenario", "INFO", statusTextPane);
+			Logger.instance.log("Launching scenario");
 		}
 		else if (e.getSource().equals(btnStopScenario))
 		{
 			controller.stopTimer();
 			btnLaunchScenario.setEnabled(false);
-			Logger.insertString("Stopping scenario", "INFO", statusTextPane);
+			Logger.instance.log("Stopping scenario");
 		}
 	}
 	
 	public void addController(MainController controller)
 	{
 		this.controller = controller;
+	}
+
+	@Override
+	public void log(String log) {
+		// TODO Auto-generated method stub
+		
 	}
 }

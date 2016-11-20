@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import modele.tools.ViewLogger.Logger;
+
 public class FileTool 
 {	
 	public FileTool() 
@@ -23,14 +25,14 @@ public class FileTool
 			String ligne;
 			while ((ligne = br.readLine()) != null) 
 			{
-				System.out.println(ligne);
+				Logger.instance.log(ligne);
 				result += ligne + "\n";
 			}
 			br.close();
 			
 		} catch (Exception e) 
 		{
-			System.out.println(e.toString());
+			Logger.instance.log(e.toString());
 		}
 		
 		return result;

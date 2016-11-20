@@ -2,6 +2,7 @@ package modele.scnObjects;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import modele.tools.ViewLogger.Logger;
 
 public class Scenario
 {
@@ -62,7 +63,7 @@ public class Scenario
 		}
 		else
 		{
-			System.out.println("WARNING: pylonId = "+pylonId+", NbPylonDeclared = "+pylons.length);
+			Logger.instance.log("WARNING: pylonId = "+pylonId+", NbPylonDeclared = "+pylons.length);
 		}
 	}
 		
@@ -75,7 +76,7 @@ public class Scenario
 		}
 		else
 		{
-			System.out.println("WARNING: playerId = "+playerId+", NbPlayersDeclared = "+players.length);
+			Logger.instance.log("WARNING: playerId = "+playerId+", NbPlayersDeclared = "+players.length);
 		}
 	}
 	
@@ -88,7 +89,7 @@ public class Scenario
 		}
 		else
 		{
-			System.out.println("WARNING: teamId = "+teamId+", NbTeamDeclared = "+teams.length);
+			Logger.instance.log("WARNING: teamId = "+teamId+", NbTeamDeclared = "+teams.length);
 		}
 	}
 }

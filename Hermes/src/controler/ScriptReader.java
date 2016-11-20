@@ -17,7 +17,7 @@ import modele.scnObjects.Pylon;
 import modele.scnObjects.Scenario;
 import modele.scnObjects.Team;
 import modele.tools.FileTool;
-import modele.tools.Logger;
+import modele.tools.ViewLogger.Logger;
 
 public class ScriptReader 
 {
@@ -40,19 +40,19 @@ public class ScriptReader
 	public void invokeButtonInput(int idPylon, String colorButton) throws NoSuchMethodException, ScriptException
 	{
 		Object result = moteurInvocable.invokeFunction("inputButton", idPylon, colorButton);
-		System.out.println(result);
+		Logger.instance.log(""+result);
 	}
 	
 	public void invokeTargetInput(int idPylon) throws NoSuchMethodException, ScriptException
 	{
 		Object result = moteurInvocable.invokeFunction("inputTarget", idPylon);
-		System.out.println(result);
+		Logger.instance.log(""+result);
 	}
 	
 	public void invokeTick(int nbTick) throws NoSuchMethodException, ScriptException
 	{
 		Object result = moteurInvocable.invokeFunction("tick", nbTick);
-		System.out.println(result);
+		Logger.instance.log(""+result);
 		
 		// On recupere les valeurs en sortie et on met à jour le modèle:
 		Scenario scenario = (Scenario)moteur.get("scenario");
@@ -67,7 +67,7 @@ public class ScriptReader
 		
 		if (booleanResult == true)
 		{
-			System.out.println("Victory: "+result);
+			Logger.instance.log("Victory, fin du scenario.");
 			controller.stopTimer();
 		}
 	}
@@ -92,20 +92,20 @@ public class ScriptReader
 	
 	public void loadEngine()
 	{
-		System.out.println("\n***** LOAD SCIPT ENGINE *****");
+		Logger.instance.log("\n***** LOAD SCRIPT ENGINE *****");
 		
 		ScriptEngineManager manager = new ScriptEngineManager();
 		List<ScriptEngineFactory> factories = manager.getEngineFactories();
 		
 		for (ScriptEngineFactory factory : factories) 
 		{
-			System.out.println("Name : " + factory.getEngineName());
-			System.out.println("Version : " + factory.getEngineVersion());
-			System.out.println("Language name : " + factory.getLanguageName());
-			System.out.println("Language version : " + factory.getLanguageVersion());
-			System.out.println("Extensions : " + factory.getExtensions());
-			System.out.println("Mime types : " + factory.getMimeTypes());
-			System.out.println("Names : " + factory.getNames());
+			Logger.instance.log("Name : " + factory.getEngineName());
+			Logger.instance.log("Version : " + factory.getEngineVersion());
+			Logger.instance.log("Language name : " + factory.getLanguageName());
+			Logger.instance.log("Language version : " + factory.getLanguageVersion());
+			Logger.instance.log("Extensions : " + factory.getExtensions());
+			Logger.instance.log("Mime types : " + factory.getMimeTypes());
+			Logger.instance.log("Names : " + factory.getNames());
 		}
 		
 		//CHARGEMENT DU SCRIPT ENGINE:
@@ -113,11 +113,11 @@ public class ScriptReader
 		this.moteur = manager.getEngineByName(engineName);
 		if (moteur == null) 
 		{ 
-	        System.out.println("Impossible de trouver le moteur "+engineName+"."); 
+	        Logger.instance.log("Impossible de trouver le moteur "+engineName+"."); 
 	    }
 		else
 		{
-			System.out.println("Moteur "+engineName+" chargé.");
+			Logger.instance.log("Moteur "+engineName+" chargé.");
 		}
 		
 		//On vérifie si le moteur est Invocable:
@@ -134,7 +134,7 @@ public class ScriptReader
 	
 	public void loadScript(String scenarioFileName)
 	{
-		System.out.println("\n***** LOAD SCRIPT FILE *****");
+		Logger.instance.log("\n***** LOAD SCRIPT FILE *****");
 		
 		//CHARGEMENT DU SCRIPT:
 		FileTool fileTool = new FileTool();

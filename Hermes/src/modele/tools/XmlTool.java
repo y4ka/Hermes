@@ -17,6 +17,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import modele.tools.ViewLogger.Logger;
+
 public class XmlTool 
 {
 	public XmlTool()
@@ -26,7 +28,7 @@ public class XmlTool
 	
 	public Scenario getScenarioParameterFile(String xmlFile)
 	{
-		System.out.println("\n***** LOAD XML FILES *****");
+		Logger.instance.log("\n***** LOAD XML FILES *****");
 		
 		Scenario loadedScenario = null;
 		
@@ -49,9 +51,9 @@ public class XmlTool
 			int nbPlayers = Integer.parseInt(players.getAttribute("nbPlayers"));
 			int nbPylons = Integer.parseInt(pylons.getAttribute("nbPylons"));
 			
-			System.out.println("nbTeams: "+teams.getAttribute("nbTeams"));
-			System.out.println("nbPlayers: "+players.getAttribute("nbPlayers"));
-			System.out.println("nbPylons: "+pylons.getAttribute("nbPylons"));
+			Logger.instance.log("nbTeams: "+teams.getAttribute("nbTeams"));
+			Logger.instance.log("nbPlayers: "+players.getAttribute("nbPlayers"));
+			Logger.instance.log("nbPylons: "+pylons.getAttribute("nbPylons"));
 			
 			//On crée notre objet scenario:
 			loadedScenario = new Scenario(nbPylons, nbPlayers, nbTeams);
@@ -72,11 +74,11 @@ public class XmlTool
 				boolean scnSpawnAllowed = Boolean.parseBoolean(spawnAllowed.item(0).getTextContent());
 				int scnSpawnNumber = Integer.parseInt(spawnNumber.item(0).getTextContent());
 				
-				System.out.println("-> Team "+scnTeamId);
-				System.out.println(" -> "+scnTeamShortName);
-				System.out.println(" -> "+scnTeamName);
-				System.out.println(" -> "+scnSpawnAllowed);
-				System.out.println(" -> "+scnSpawnNumber);
+				Logger.instance.log("-> Team "+scnTeamId);
+				Logger.instance.log(" -> "+scnTeamShortName);
+				Logger.instance.log(" -> "+scnTeamName);
+				Logger.instance.log(" -> "+scnSpawnAllowed);
+				Logger.instance.log(" -> "+scnSpawnNumber);
 				
 				
 				Team scnTeam = new Team(scnTeamId, scnTeamName, scnTeamShortName, scnSpawnAllowed, scnSpawnNumber);
@@ -95,9 +97,9 @@ public class XmlTool
 				String scnPlayerName = playerName.item(0).getTextContent();
 				int scnTeamId = Integer.parseInt(teamId.item(0).getTextContent());
 				
-				System.out.println("-> Player "+scnPlayerId);
-				System.out.println(" -> "+scnPlayerName);
-				System.out.println(" -> "+scnTeamId);
+				Logger.instance.log("-> Player "+scnPlayerId);
+				Logger.instance.log(" -> "+scnPlayerName);
+				Logger.instance.log(" -> "+scnTeamId);
 				
 				Player scnPlayer = new Player(scnPlayerId, scnPlayerName);
 				loadedScenario.addPlayer(scnPlayer);
@@ -117,9 +119,9 @@ public class XmlTool
 				String scnPylonName = pylonName.item(0).getTextContent();
 				boolean scnEnabled = Boolean.parseBoolean(enabled.item(0).getTextContent());
 				
-				System.out.println("-> Pylon "+scnPylonId);
-				System.out.println(" -> "+scnPylonName);
-				System.out.println(" -> "+scnEnabled);
+				Logger.instance.log("-> Pylon "+scnPylonId);
+				Logger.instance.log(" -> "+scnPylonName);
+				Logger.instance.log(" -> "+scnEnabled);
 				
 				Pylon scnPylon = new Pylon(scnPylonId, scnPylonName, scnEnabled);
 				loadedScenario.addPylon(scnPylon);
