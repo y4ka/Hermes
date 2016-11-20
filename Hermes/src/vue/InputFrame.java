@@ -33,7 +33,8 @@ public class InputFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InputFrame() {
+	public InputFrame() 
+	{
 		setTitle("InputFrame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 649, 499);
@@ -56,6 +57,9 @@ public class InputFrame extends JFrame {
 	public void update(Observable obs, Object obj) 
 	{
 		Scenario scenario = (Scenario) obj;
+		
+		//Remove all previous components (update)
+		mainPanel.removeAll();
 		
 		//Affichage Dynamique des Pylons:
 		for (int i = 0 ; i < scenario.getNumberOfPylons() ; i++)

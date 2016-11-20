@@ -66,6 +66,11 @@ public class ScnControlFrame extends JFrame {
 	{
 		Scenario scenario = (Scenario) obj;
 		
+		//Remove all previous components (update)
+		panelPlayers.removeAll();
+		panelPylon.removeAll();
+		panelTeam.removeAll();
+		
 		//Affichage dynamique des Players:
 		for (int i = 0 ; i < scenario.getNumberOfPlayers() ; i++)
 		{
