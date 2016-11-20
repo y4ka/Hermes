@@ -67,6 +67,9 @@ public class InputFrame extends JFrame {
 		{
 			int pylonId = scenario.getPylons()[i].getId();
 			String pylonName = scenario.getPylons()[i].getName();
+			boolean enabled = scenario.getPylons()[i].isEnabled();
+			boolean hitDetectorEnabled = scenario.getPylons()[i].isHitDetectorEnabled();
+			boolean keyboardEnabled = scenario.getPylons()[i].isKeyboardEnabled();
 			int nbOwners = scenario.getPylons()[i].getNbOwners();
 			
 			JPanel panelPylons = new JPanel();
@@ -83,6 +86,7 @@ public class InputFrame extends JFrame {
 			JLabel labelHitDetector = new JLabel("<html><u>Target:</u></html>");
 			JButton buttonHitDetector = new JButton("Hit Detector");
 			
+			//Creation des Listeners des boutons:
 			buttonRed.addActionListener(createDynamicActionListeners(pylonId, "RED"));
 			buttonBlue.addActionListener(createDynamicActionListeners(pylonId, "BLUE"));
 			buttonBlack.addActionListener(createDynamicActionListeners(pylonId, "BLACK"));
@@ -90,6 +94,7 @@ public class InputFrame extends JFrame {
 			buttonGreen.addActionListener(createDynamicActionListeners(pylonId, "GREEN"));
 			buttonGreen.addActionListener(createDynamicActionListeners(pylonId, "GREEN"));
 			
+			//Creation du Listener de la target:
 			buttonHitDetector.addActionListener(new ActionListener() 
 			{
 				public void actionPerformed(ActionEvent e) 
@@ -105,6 +110,13 @@ public class InputFrame extends JFrame {
 				}
 			});
 			
+			//Activation - Desactivation des composants:
+			if (hitDetectorEnabled == false)
+			{
+				buttonHitDetector.setEnabled(false);
+			}
+			
+			//Ajout des composants au panel:
 			panelPylons.add(labelPlayerName);
 			panelPylons.add(labelNbOwners);
 			panelPylons.add(buttonRed);
@@ -115,8 +127,7 @@ public class InputFrame extends JFrame {
 			panelPylons.add(labelHitDetector);
 			panelPylons.add(buttonHitDetector);
 			
-			
-			//Ajout des labels créés dynamiquement à la fenetre:
+			//Ajout des composants créés dynamiquement à la fenetre:
 			mainPanel.add(panelPylons);
 			
 			//On rafraichit la fenetre:

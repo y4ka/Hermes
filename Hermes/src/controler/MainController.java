@@ -33,8 +33,8 @@ public class MainController
 			{
 				try 
 				{
-					scriptReader.invokeTick(nbTick);
 					scriptReader.checkVictory();
+					scriptReader.invokeTick(nbTick);
 					nbTick++;	
 				} 
 				catch (NoSuchMethodException | ScriptException e) 

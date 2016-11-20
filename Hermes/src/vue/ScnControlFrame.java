@@ -142,7 +142,6 @@ public class ScnControlFrame extends JFrame {
 				panelTeams.add(labelPlayerName);
 			}
 			
-			
 			//Ajout des labels créés dynamiquement à la fenetre:
 			panelTeam.add(panelTeams);
 		}

@@ -42,10 +42,14 @@
     	<pylon pylonId="0">
     		<pylonName>A Site</pylonName>
     		<enabled>true</enabled>
+    		<hitDetectorEnabled>true</hitDetectorEnabled>
+    		<keyboardEnabled>true</keyboardEnabled>
     	</pylon>
     	<pylon pylonId="1">
     		<pylonName>B Site</pylonName>
     		<enabled>false</enabled>
+    		<hitDetectorEnabled>false</hitDetectorEnabled>
+    		<keyboardEnabled>true</keyboardEnabled>
     	</pylon>
     </pylons>
     

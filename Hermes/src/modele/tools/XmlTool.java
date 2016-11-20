@@ -114,16 +114,22 @@ public class XmlTool
 				Element pylon = (Element) listePylons.item(i);
 				NodeList pylonName = pylon.getElementsByTagName("pylonName");
 				NodeList enabled = pylon.getElementsByTagName("enabled");
+				NodeList hitDetectorEnabled = pylon.getElementsByTagName("hitDetectorEnabled");
+				NodeList keyboardEnabled = pylon.getElementsByTagName("keyboardEnabled");
 				
 				int scnPylonId = Integer.parseInt(pylon.getAttribute("pylonId"));
 				String scnPylonName = pylonName.item(0).getTextContent();
 				boolean scnEnabled = Boolean.parseBoolean(enabled.item(0).getTextContent());
+				boolean scnHitDetectorEnabled = Boolean.parseBoolean(hitDetectorEnabled.item(0).getTextContent());
+				boolean scnKeyboardEnabled = Boolean.parseBoolean(keyboardEnabled.item(0).getTextContent());
 				
 				Logger.instance.log("-> Pylon "+scnPylonId);
 				Logger.instance.log(" -> "+scnPylonName);
 				Logger.instance.log(" -> "+scnEnabled);
+				Logger.instance.log(" -> "+scnHitDetectorEnabled);
+				Logger.instance.log(" -> "+scnKeyboardEnabled);
 				
-				Pylon scnPylon = new Pylon(scnPylonId, scnPylonName, scnEnabled);
+				Pylon scnPylon = new Pylon(scnPylonId, scnPylonName, scnEnabled, scnHitDetectorEnabled, scnKeyboardEnabled);
 				loadedScenario.addPylon(scnPylon);
 			}
 			
