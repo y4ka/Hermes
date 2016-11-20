@@ -52,5 +52,30 @@ public interface ViewLogger
 				System.out.println(log);
 			}
 		}
+		
+		public void log(String log, EnumLogger.Log level)
+		{
+			synchronized (listeners) 
+			{
+				//Sortie des logs dans la vue:
+				for (JTextPane jtextPane : listeners)
+				{
+					StyledDocument doc = jtextPane.getStyledDocument();
+					SimpleAttributeSet keyWord = new SimpleAttributeSet();
+					
+					try 
+					{
+						doc.insertString(doc.getLength(), log+"\n", keyWord);
+					} 
+					catch (BadLocationException e) 
+					{
+						e.printStackTrace();
+					}
+				}
+				
+				//Sortie des logs en console:
+				System.out.println(log);
+			}
+		}
 	}
 }
