@@ -79,12 +79,30 @@ public class InputFrame extends JFrame {
 			JButton buttonBlack = new JButton("Black");
 			JButton buttonYellow = new JButton("Yellow");
 			JButton buttonGreen = new JButton("Green");
+			JLabel labelHitDetector = new JLabel("<html><u>Target:</u></html>");
+			JButton buttonHitDetector = new JButton("Hit Detector");
 			
 			buttonRed.addActionListener(createDynamicActionListeners(pylonId, "RED"));
 			buttonBlue.addActionListener(createDynamicActionListeners(pylonId, "BLUE"));
 			buttonBlack.addActionListener(createDynamicActionListeners(pylonId, "BLACK"));
 			buttonYellow.addActionListener(createDynamicActionListeners(pylonId, "YELLOW"));
 			buttonGreen.addActionListener(createDynamicActionListeners(pylonId, "GREEN"));
+			buttonGreen.addActionListener(createDynamicActionListeners(pylonId, "GREEN"));
+			
+			buttonHitDetector.addActionListener(new ActionListener() 
+			{
+				public void actionPerformed(ActionEvent e) 
+				{
+					try 
+					{
+						controller.getScriptReader().invokeTargetInput(pylonId);
+					} 
+					catch (NoSuchMethodException | ScriptException e1) 
+					{
+						e1.printStackTrace();
+					}
+				}
+			});
 			
 			panelPylons.add(labelPlayerName);
 			panelPylons.add(labelNbOwners);
@@ -93,6 +111,9 @@ public class InputFrame extends JFrame {
 			panelPylons.add(buttonBlack);
 			panelPylons.add(buttonYellow);
 			panelPylons.add(buttonGreen);
+			panelPylons.add(labelHitDetector);
+			panelPylons.add(buttonHitDetector);
+			
 			
 			//Ajout des labels créés dynamiquement à la fenetre:
 			mainPanel.add(panelPylons);

@@ -34,6 +34,11 @@ function inputButton(idPylon, colorButton)
     	}
   	}
 }
+
+function inputTarget(idPylon)
+{
+	return "Unused function";
+}
  
 function tick(nbTick)
 {

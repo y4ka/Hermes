@@ -43,6 +43,12 @@ public class ScriptReader
 		System.out.println(result);
 	}
 	
+	public void invokeTargetInput(int idPylon) throws NoSuchMethodException, ScriptException
+	{
+		Object result = moteurInvocable.invokeFunction("inputTarget", idPylon);
+		System.out.println(result);
+	}
+	
 	public void invokeTick(int nbTick) throws NoSuchMethodException, ScriptException
 	{
 		Object result = moteurInvocable.invokeFunction("tick", nbTick);
