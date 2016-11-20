@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.Observable;
 
 import javax.swing.border.TitledBorder;
@@ -149,12 +150,22 @@ public class LaunchFrame extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) 
 	{
+		String currentPath = ".";
+		try 
+		{
+			currentPath = LaunchFrame.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+		} 
+		catch (URISyntaxException e1) 
+		{	
+			e1.printStackTrace();
+		}
+		
 		if (e.getSource().equals(btnBrowseJavascript))
 		{
 			JFileChooser fileChooserJavascript = new JFileChooser();
 			fileChooserJavascript.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			fileChooserJavascript.setDialogTitle("Select Scenario Javascript File");
-			fileChooserJavascript.setCurrentDirectory(new File("."));
+			fileChooserJavascript.setCurrentDirectory(new File(currentPath));
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("Javascript Files", "js");
 			fileChooserJavascript.setFileFilter(filter);
 			int result = fileChooserJavascript.showOpenDialog(this);
@@ -171,7 +182,7 @@ public class LaunchFrame extends JFrame implements ActionListener {
 			JFileChooser fileChooserXML = new JFileChooser();
 			fileChooserXML.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			fileChooserXML.setDialogTitle("Select Parameter XML File");
-			fileChooserXML.setCurrentDirectory(new File("."));
+			fileChooserXML.setCurrentDirectory(new File(currentPath));
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("XML Files", "xml");
 			fileChooserXML.setFileFilter(filter);
 			int result = fileChooserXML.showOpenDialog(this);
