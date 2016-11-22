@@ -147,7 +147,8 @@ public class ScnControlFrame extends JFrame {
 		}
 		
 		//On rafraichit la fenetre:
-		SwingUtilities.updateComponentTreeUI(this);
+		this.setVisible(false);
+		this.setVisible(true);
 	}
 	
 	public void addController(MainController controller)
