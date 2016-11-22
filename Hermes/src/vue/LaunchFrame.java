@@ -23,6 +23,7 @@ import modele.tools.ViewLogger;
 import controler.MainController;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import java.awt.Component;
 
 public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 
@@ -48,6 +49,13 @@ public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 	private File jsFile;
 	private JButton btnStopScenario;
 	private JScrollPane scrollPane;
+	private JPanel messagePanel;
+	private JPanel receiverPanel;
+	private JPanel senderPanel;
+	private JScrollPane scrollPaneReceiver;
+	private JScrollPane scrollPaneSender;
+	private JTextPane receiverTextPane;
+	private JTextPane senderTextPane;
 	
 	/**
 	 * Create the frame.
@@ -55,7 +63,7 @@ public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 	public LaunchFrame() {
 		setTitle("Load and Launch");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 602, 516);
+		setBounds(100, 100, 782, 633);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -127,12 +135,46 @@ public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 		contentPane.add(statusPanel);
 		
 		statusTextPane = new JTextPane();
-		setVisible(true);
 		statusPanel.setLayout(new BorderLayout(0, 0));
 		
 		scrollPane = new JScrollPane(statusTextPane);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		statusPanel.add(scrollPane);
+		
+		// ===== MESSAGE ADAPTER PANEL =====
+		
+		messagePanel = new JPanel();
+		messagePanel.setBorder(new TitledBorder(null, "Message Adapter", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		messagePanel.setLayout(new GridLayout(0, 2, 0, 0));
+		contentPane.add(messagePanel);
+			
+			// ===== RECEIVER =====
+			
+			receiverPanel = new JPanel();
+			receiverPanel.setBorder(new TitledBorder(null, "Receiver", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			receiverPanel.setLayout(new BorderLayout(0, 0));
+			messagePanel.add(receiverPanel);
+			
+			receiverTextPane = new JTextPane();
+			
+			scrollPaneReceiver = new JScrollPane(receiverTextPane);
+			scrollPaneReceiver.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			receiverPanel.add(scrollPaneReceiver);
+			
+			// ===== SENDER =====
+		
+			senderPanel = new JPanel();
+			senderPanel.setBorder(new TitledBorder(null, "Sender", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			senderPanel.setLayout(new BorderLayout(0, 0));
+			messagePanel.add(senderPanel);
+			
+			senderTextPane = new JTextPane();
+			
+			scrollPaneSender = new JScrollPane(senderTextPane);
+			scrollPaneSender.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			senderPanel.add(scrollPaneSender);
+		
+		setVisible(true);
 		
 		//Add TextPane to Logger listener list:
 		Logger.instance.addListener(statusTextPane);
