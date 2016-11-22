@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import messageAdapter.MessageAdapter;
 import controler.MainController;
 
 public class View implements Observer
@@ -30,6 +31,10 @@ public class View implements Observer
 	{
 		scnControlFrame.addController(controller);
 		launchFrame.addController(controller);
-		inputFrame.addController(controller);
+	}
+	
+	public void addMessageAdapter(MessageAdapter messageAdapter)
+	{
+		inputFrame.addMessageAdapter(messageAdapter);
 	}
 }

@@ -18,6 +18,8 @@ import controler.MainController;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
+import messageAdapter.MessageAdapter;
+import messageAdapter.MessageReceiver;
 import modele.scnObjects.Scenario;
 
 import java.awt.GridLayout;
@@ -28,9 +30,10 @@ import java.util.Observable;
 public class InputFrame extends JFrame {
 
 	private JPanel contentPane;
-	
-	private MainController controller;
 	private JPanel mainPanel;
+	
+	private MessageAdapter messageAdapter;
+	private MessageReceiver messageReceiver;
 
 	/**
 	 * Create the frame.
@@ -49,11 +52,6 @@ public class InputFrame extends JFrame {
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 		mainPanel.setLayout(new GridLayout(1, 0, 0, 0));
 		setVisible(true);
-	}
-	
-	public void addController(MainController controller)
-	{
-		this.controller = controller;
 	}
 	
 	public void update(Observable obs, Object obj) 
@@ -96,21 +94,13 @@ public class InputFrame extends JFrame {
 			buttonBlack.addActionListener(createDynamicActionListeners(pylonId, "BLACK"));
 			buttonYellow.addActionListener(createDynamicActionListeners(pylonId, "YELLOW"));
 			buttonGreen.addActionListener(createDynamicActionListeners(pylonId, "GREEN"));
-			buttonGreen.addActionListener(createDynamicActionListeners(pylonId, "GREEN"));
 			
 			//Creation du Listener de la target:
 			buttonHitDetector.addActionListener(new ActionListener() 
 			{
 				public void actionPerformed(ActionEvent e) 
 				{
-					try 
-					{
-						controller.getScriptReader().invokeTargetInput(pylonId);
-					} 
-					catch (NoSuchMethodException | ScriptException e1) 
-					{
-						e1.printStackTrace();
-					}
+					messageReceiver.targetInput(pylonId);
 				}
 			});
 			
@@ -119,14 +109,7 @@ public class InputFrame extends JFrame {
 			{
 				public void actionPerformed(ActionEvent e) 
 				{
-					try 
-					{
-						controller.getScriptReader().invokeKeyboardInput(pylonId, textFieldKeyboard.getText());
-					}
-					catch (NoSuchMethodException | ScriptException e1) 
-					{
-						e1.printStackTrace();
-					}
+					messageReceiver.keyboardInput(pylonId, textFieldKeyboard.getText());
 				}
 			});
 			
@@ -171,17 +154,16 @@ public class InputFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				try 
-				{
-					controller.getScriptReader().invokeButtonInput(pylonId, colorButton);
-				}
-				catch (NoSuchMethodException | ScriptException e1) 
-				{
-					e1.printStackTrace();
-				}
+				messageReceiver.inputButton(pylonId, colorButton);
 			}
 		};
 		
 		return listenerButton;
+	}
+	
+	public void addMessageAdapter(MessageAdapter messageAdapter)
+	{
+		this.messageAdapter = messageAdapter;
+		this.messageReceiver = messageAdapter.getMessageReceiver();
 	}
 }

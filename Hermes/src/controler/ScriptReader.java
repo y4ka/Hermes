@@ -37,22 +37,52 @@ public class ScriptReader
 //	   ===== ===== METHODES D'APPEL JAVASCRIPT ===== =====
 //	   ===================================================
 	
-	public void invokeButtonInput(int idPylon, String colorButton) throws NoSuchMethodException, ScriptException
+	public void invokeButtonInput(int idPylon, String colorButton)
 	{
-		Object result = moteurInvocable.invokeFunction("inputButton", idPylon, colorButton);
-		Logger.instance.log(""+result);
+		try 
+		{
+			Object result = moteurInvocable.invokeFunction("inputButton", idPylon, colorButton);
+			Logger.instance.log(""+result);
+		} 
+		catch (NoSuchMethodException e) {
+			Logger.instance.log("Javascript Method not found !");
+			e.printStackTrace();
+		} catch (ScriptException e) {
+			Logger.instance.log("Script Exception !");
+			e.printStackTrace();
+		}
 	}
 	
-	public void invokeTargetInput(int idPylon) throws NoSuchMethodException, ScriptException
+	public void invokeTargetInput(int idPylon)
 	{
-		Object result = moteurInvocable.invokeFunction("inputTarget", idPylon);
-		Logger.instance.log(""+result);
+		try 
+		{
+			Object result = moteurInvocable.invokeFunction("inputTarget", idPylon);
+			Logger.instance.log(""+result);
+		}
+		catch (NoSuchMethodException e) {
+			Logger.instance.log("Javascript Method not found !");
+			e.printStackTrace();
+		} catch (ScriptException e) {
+			Logger.instance.log("Script Exception !");
+			e.printStackTrace();
+		}
 	}
 	
-	public void invokeKeyboardInput(int idPylon, String keyboardString) throws NoSuchMethodException, ScriptException
+	public void invokeKeyboardInput(int idPylon, String keyboardString)
 	{
-		Object result = moteurInvocable.invokeFunction("inputKeyboard", idPylon, keyboardString);
-		Logger.instance.log(""+result);
+		try 
+		{
+			Object result = moteurInvocable.invokeFunction("inputKeyboard", idPylon, keyboardString);
+			Logger.instance.log(""+result);
+		} 
+		catch (NoSuchMethodException e) {
+			Logger.instance.log("Javascript Method not found !");
+			e.printStackTrace();
+		} catch (ScriptException e) {
+			Logger.instance.log("Script Exception !");
+			e.printStackTrace();
+		}
 	}
 	
 	public void invokeTick(int nbTick) throws NoSuchMethodException, ScriptException

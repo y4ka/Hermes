@@ -19,14 +19,20 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import messageAdapter.MessageAdapter;
+import messageAdapter.MessageReceiver;
 import modele.tools.ViewLogger;
 import controler.MainController;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
 import java.awt.Component;
 
 public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 
+	// GENERATED CLASS VARIABLES:
+	
 	private JPanel contentPane;
 	private JTextField pathJavascript;
 	private JPanel loadPanel;
@@ -43,10 +49,6 @@ public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 	private JButton btnLaunchScenario;
 	private JButton btnLoadJavascript;
 	private JButton btnLoadXML;
-	
-	private MainController controller;
-	private File xmlFile;
-	private File jsFile;
 	private JButton btnStopScenario;
 	private JScrollPane scrollPane;
 	private JPanel messagePanel;
@@ -56,6 +58,12 @@ public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 	private JScrollPane scrollPaneSender;
 	private JTextPane receiverTextPane;
 	private JTextPane senderTextPane;
+	
+	// MANUAL CLASS VARIABLES:
+	
+	private MainController controller;
+	private File xmlFile;
+	private File jsFile;
 	
 	/**
 	 * Create the frame.
@@ -178,6 +186,8 @@ public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 		
 		//Add TextPane to Logger listener list:
 		Logger.instance.addListener(statusTextPane);
+		Logger.instance.addListenerReceiver(receiverTextPane);
+		Logger.instance.addListenerSender(senderTextPane);
 	}
 
 	public void actionPerformed(ActionEvent e) 
@@ -270,7 +280,7 @@ public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 	{
 		this.controller = controller;
 	}
-
+	
 	@Override
 	public void log(String log) {
 		// TODO Auto-generated method stub

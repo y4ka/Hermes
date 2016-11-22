@@ -21,6 +21,9 @@ public class MainClass
 		controller.addModel(model);
 		controller.addView(view);
 		
+		//Create Message Adapter
+		MessageAdapter messageAdapter = new MessageAdapter(controller);
+		
 		//Lancement sans IHM:
 		//controller.initScenario("scenario.js");
 		//controller.initModel("scenario.xml");
@@ -28,8 +31,6 @@ public class MainClass
 
 		//Tell View about Controller 
 		view.addController(controller);
-		
-		//Create Message Adapter
-		MessageAdapter messageAdapter = new MessageAdapter(controller);
+		view.addMessageAdapter(messageAdapter);
 	}
 }
