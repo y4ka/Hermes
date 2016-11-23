@@ -11,6 +11,11 @@ public class Pylon
 	private boolean keyboardEnabled;
 	private ArrayList<Team> owners = new ArrayList<Team>();
 	
+	private int tensionBatterie;
+	private int niveauCrepuscule;
+	private int qualiteLiaisonRadio;
+	private int qualiteLiaisonWifi;
+	
 	public Pylon(int id, String name, boolean enabled, boolean hitDetectorEnabled, boolean keyboardEnabled)
 	{
 		this.id = id;
@@ -18,6 +23,11 @@ public class Pylon
 		this.enabled = enabled;
 		this.hitDetectorEnabled = hitDetectorEnabled;
 		this.keyboardEnabled = keyboardEnabled;
+		
+		this.tensionBatterie = 10;
+		this.niveauCrepuscule = 100;
+		this.qualiteLiaisonRadio = 100;
+		this.qualiteLiaisonWifi = 100;
 	}
 
 	public int getId() {
@@ -75,5 +85,37 @@ public class Pylon
 	public void addOwner(Team team)
 	{
 		owners.add(team);
+	}
+
+	public int getTensionBatterie() {
+		return tensionBatterie;
+	}
+
+	public void setTensionBatterie(int tensionBatterie) {
+		this.tensionBatterie = tensionBatterie;
+	}
+
+	public int getNiveauCrepuscule() {
+		return niveauCrepuscule;
+	}
+
+	public void setNiveauCrepuscule(int niveauCrepuscule) {
+		this.niveauCrepuscule = niveauCrepuscule;
+	}
+
+	public int getQualiteLiaisonRadio() {
+		return qualiteLiaisonRadio;
+	}
+
+	public void setQualiteLiaisonRadio(int qualiteLiaisonRadio) {
+		this.qualiteLiaisonRadio = qualiteLiaisonRadio;
+	}
+
+	public int getQualiteLiaisonWifi() {
+		return qualiteLiaisonWifi;
+	}
+
+	public void setQualiteLiaisonWifi(int qualiteLiaisonWifi) {
+		this.qualiteLiaisonWifi = qualiteLiaisonWifi;
 	}
 }
