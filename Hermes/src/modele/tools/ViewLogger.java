@@ -1,5 +1,7 @@
 package modele.tools;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -79,9 +81,16 @@ public interface ViewLogger
 					StyledDocument doc = jtextPane.getStyledDocument();
 					SimpleAttributeSet keyWord = new SimpleAttributeSet();
 					
+					//On recupere l'heure courante et on la formatte:
+					SimpleDateFormat d = new SimpleDateFormat ("dd/MM/yyyy");
+					SimpleDateFormat h = new SimpleDateFormat ("hh:mm");
+					Date currentTime = new Date();
+					String dateString = d.format(currentTime);
+					String hourString = h.format(currentTime);
+					
 					try 
 					{
-						doc.insertString(doc.getLength(), log+"\n", keyWord);
+						doc.insertString(doc.getLength(), dateString+" "+hourString+" : "+log+"\n", keyWord);
 					} 
 					catch (BadLocationException e) 
 					{
