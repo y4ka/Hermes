@@ -95,30 +95,28 @@ public class ScnControlFrame extends JFrame {
 			int pylonId = scenario.getPylons()[i].getId();
 			String pylonName = scenario.getPylons()[i].getName();
 			int nbOwners = scenario.getPylons()[i].getNbOwners();
-			
-			int tensionBatterie = scenario.getPylons()[i].getTensionBatterie();
-			int niveauCrepuscule = scenario.getPylons()[i].getNiveauCrepuscule();
-			int qualiteLiaisonRadio = scenario.getPylons()[i].getQualiteLiaisonRadio();
-			int qualiteLiaisonWifi = scenario.getPylons()[i].getQualiteLiaisonWifi();
+			int batteryVoltage = scenario.getPylons()[i].getBatteryVoltage();
+			int duskLevel = scenario.getPylons()[i].getDuskLevel();
+			int radioLinkQuality = scenario.getPylons()[i].getRadioLinkQuality();
+			int wifiLinkQuality = scenario.getPylons()[i].getWifiLinkQuality();
 			
 			JPanel panelPylons = new JPanel();
 			panelPylons.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Pylon no "+pylonId, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panelPylons.setLayout(new GridLayout(0, 1, 0, 0));
+			
 			JLabel labelPlayerName = new JLabel("<html><u>Name:</u> "+pylonName+"</html>");
 			JLabel labelNbOwners = new JLabel("<html><u>Nb Owners:</u> "+nbOwners+"</html>");
-			
-			JLabel labelTensionBatterie = new JLabel("<html><u>Tension batterie:</u> "+tensionBatterie+" V</html>");
-			JLabel labelNiveauCrepuscule = new JLabel("<html><u>Niveau Crepuscule:</u> "+niveauCrepuscule+" %</html>");
-			JLabel labelQualiteLiaisonRadio = new JLabel("<html><u>Liaison Radio:</u> "+qualiteLiaisonRadio+" %</html>");
-			JLabel labelQualiteLiaisonWifi = new JLabel("<html><u>Liaison Wifi:</u> "+qualiteLiaisonWifi+" %</html>");
+			JLabel labelBatteryVoltage = new JLabel("<html><u>Tension batterie:</u> "+batteryVoltage+" V</html>");
+			JLabel labelDuskLevel = new JLabel("<html><u>Niveau Crepuscule:</u> "+duskLevel+" %</html>");
+			JLabel labelRadioLinkQuality = new JLabel("<html><u>Liaison Radio:</u> "+radioLinkQuality+" %</html>");
+			JLabel labelWifiLinkQuality = new JLabel("<html><u>Liaison Wifi:</u> "+wifiLinkQuality+" %</html>");
 			
 			panelPylons.add(labelPlayerName);
 			panelPylons.add(labelNbOwners);
-			
-			panelPylons.add(labelTensionBatterie);
-			panelPylons.add(labelNiveauCrepuscule);
-			panelPylons.add(labelQualiteLiaisonRadio);
-			panelPylons.add(labelQualiteLiaisonWifi);
+			panelPylons.add(labelBatteryVoltage);
+			panelPylons.add(labelDuskLevel);
+			panelPylons.add(labelRadioLinkQuality);
+			panelPylons.add(labelWifiLinkQuality);
 			
 			//Ajout des labels créés dynamiquement à la fenetre:
 			panelPylon.add(panelPylons);

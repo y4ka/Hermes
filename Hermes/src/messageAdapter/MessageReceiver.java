@@ -34,4 +34,24 @@ public class MessageReceiver
 		controller.getScriptReader().invokeTargetInput(idPylon);
 		Logger.instance.logReceiver("INPUT TARGET: "+idPylon);
 	}
+	
+	public void batteryVoltage(int idPylon, int value)
+	{
+		
+	}
+	
+	public void duskLevel(int idPylon, int value)
+	{
+		
+	}
+	
+	public void radioLinkQuality(int idPylon, int value)
+	{
+		
+	}
+	
+	public void wifiLinkQuality(int idPylon, int value)
+	{
+		
+	}
 }

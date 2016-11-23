@@ -11,10 +11,10 @@ public class Pylon
 	private boolean keyboardEnabled;
 	private ArrayList<Team> owners = new ArrayList<Team>();
 	
-	private int tensionBatterie;
-	private int niveauCrepuscule;
-	private int qualiteLiaisonRadio;
-	private int qualiteLiaisonWifi;
+	private int batteryVoltage;
+	private int duskLevel;
+	private int radioLinkQuality;
+	private int wifiLinkQuality;
 	
 	public Pylon(int id, String name, boolean enabled, boolean hitDetectorEnabled, boolean keyboardEnabled)
 	{
@@ -24,10 +24,10 @@ public class Pylon
 		this.hitDetectorEnabled = hitDetectorEnabled;
 		this.keyboardEnabled = keyboardEnabled;
 		
-		this.tensionBatterie = 10;
-		this.niveauCrepuscule = 100;
-		this.qualiteLiaisonRadio = 100;
-		this.qualiteLiaisonWifi = 100;
+		this.batteryVoltage = 10;
+		this.duskLevel = 100;
+		this.radioLinkQuality = 100;
+		this.wifiLinkQuality = 100;
 	}
 
 	public int getId() {
@@ -87,35 +87,35 @@ public class Pylon
 		owners.add(team);
 	}
 
-	public int getTensionBatterie() {
-		return tensionBatterie;
+	public int getBatteryVoltage() {
+		return batteryVoltage;
 	}
 
-	public void setTensionBatterie(int tensionBatterie) {
-		this.tensionBatterie = tensionBatterie;
+	public void setBatteryVoltage(int batteryVoltage) {
+		this.batteryVoltage = batteryVoltage;
 	}
 
-	public int getNiveauCrepuscule() {
-		return niveauCrepuscule;
+	public int getDuskLevel() {
+		return duskLevel;
 	}
 
-	public void setNiveauCrepuscule(int niveauCrepuscule) {
-		this.niveauCrepuscule = niveauCrepuscule;
+	public void setDuskLevel(int duskLevel) {
+		this.duskLevel = duskLevel;
 	}
 
-	public int getQualiteLiaisonRadio() {
-		return qualiteLiaisonRadio;
+	public int getRadioLinkQuality() {
+		return radioLinkQuality;
 	}
 
-	public void setQualiteLiaisonRadio(int qualiteLiaisonRadio) {
-		this.qualiteLiaisonRadio = qualiteLiaisonRadio;
+	public void setRadioLinkQuality(int radioLinkQuality) {
+		this.radioLinkQuality = radioLinkQuality;
 	}
 
-	public int getQualiteLiaisonWifi() {
-		return qualiteLiaisonWifi;
+	public int getWifiLinkQuality() {
+		return wifiLinkQuality;
 	}
 
-	public void setQualiteLiaisonWifi(int qualiteLiaisonWifi) {
-		this.qualiteLiaisonWifi = qualiteLiaisonWifi;
+	public void setWifiLinkQuality(int wifiLinkQuality) {
+		this.wifiLinkQuality = wifiLinkQuality;
 	}
 }
