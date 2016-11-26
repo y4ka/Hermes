@@ -37,21 +37,21 @@ public class MessageReceiver
 	
 	public void batteryVoltage(int idPylon, int value)
 	{
-		
+		Logger.instance.logReceiver("BATTERY VOLTAGE: "+idPylon+", "+value);
 	}
 	
 	public void duskLevel(int idPylon, int value)
 	{
-		
+		Logger.instance.logReceiver("DUSK LEVEL: "+idPylon+", "+value);
 	}
 	
 	public void radioLinkQuality(int idPylon, int value)
 	{
-		
+		Logger.instance.logReceiver("RADIO LINK QUALITY: "+idPylon+", "+value);
 	}
 	
 	public void wifiLinkQuality(int idPylon, int value)
 	{
-		
+		Logger.instance.logReceiver("WIFI LINK QUALITY: "+idPylon+", "+value);
 	}
 }

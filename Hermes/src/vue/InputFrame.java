@@ -142,8 +142,7 @@ public class InputFrame extends JFrame {
 			mainPanel.add(panelPylons);
 			
 			//On rafraichit la fenetre:
-			this.setVisible(false);
-			this.setVisible(true);
+			this.revalidate();
 		}
 	}
 	

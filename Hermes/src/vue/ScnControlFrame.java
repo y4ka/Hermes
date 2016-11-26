@@ -160,8 +160,7 @@ public class ScnControlFrame extends JFrame {
 		}
 		
 		//On rafraichit la fenetre:
-		this.setVisible(false);
-		this.setVisible(true);
+		this.revalidate();
 	}
 	
 	public void addController(MainController controller)
