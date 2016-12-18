@@ -32,5 +32,8 @@ public class MainClass
 		//Tell View about Controller 
 		view.addController(controller);
 		view.addMessageAdapter(messageAdapter);
+		
+		//On lance le serveur UDP:
+		messageAdapter.getMessageReceiver().launchServer();
 	}
 }

@@ -264,6 +264,7 @@ public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 		}
 		else if (e.getSource().equals(btnLaunchScenario))
 		{
+			//On lance le Timer du script:
 			controller.launchTimer();
 			btnStopScenario.setEnabled(true);
 			Logger.instance.log("Launching scenario");
