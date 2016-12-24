@@ -34,6 +34,6 @@ public class MainClass
 		view.addMessageAdapter(messageAdapter);
 		
 		//On lance le serveur UDP:
-		messageAdapter.getMessageReceiver().launchServer();
+		messageAdapter.getMessageReceiver().launchServer("TCP");
 	}
 }

@@ -3,34 +3,71 @@ package messageAdapter;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 import modele.tools.ViewLogger.Logger;
 import controler.MainController;
 
-public class MessageReceiver 
+public class MessageReceiver extends Thread
 {
 	private MainController controller;
 	
 	private int port = 9632;
 	private int taille = 1024;
+	private Socket socket;
 	
 	public MessageReceiver(MainController controller)
 	{
 		this.controller = controller;
 	}
 	
-	public void launchServer()
+	public void launchServer(String protocol)
 	{
 		try 
 		{
-			this.messageListener();
-		} catch (IOException e) 
+			switch(protocol)
+			{
+				case "UDP":
+					this.messageListenerUDP();
+					break;
+				case "TCP":
+					this.messageListenerTCP();
+					break;
+				default:
+					this.messageListenerTCP();
+					break;
+			}
+		} 
+		catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
 	}
 	
-	private void messageListener() throws IOException
+//	   ==================================
+//	   ===== ===== TCP SERVER ===== =====
+//	   ==================================
+	
+	private void messageListenerTCP() throws IOException 
+	{
+		ServerSocket socketServeur = new ServerSocket(port);
+		
+		Logger.instance.logReceiver("LAUNCHING TCP SERVER");
+		
+		while (true) 
+		{
+			Socket socketClient = socketServeur.accept();
+			TCPServer t = new TCPServer(socketClient);
+			t.start();
+		}
+	}
+	
+//	   ==================================
+//	   ===== ===== UDP SERVER ===== =====
+//	   ==================================
+	
+	private void messageListenerUDP() throws IOException
 	{
 		byte buffer[] = new byte[taille];
 		DatagramSocket socket = new DatagramSocket(port);
@@ -60,9 +97,19 @@ public class MessageReceiver
 	    }
 	}
 	
-//	   =================================================
-//	   ===== ===== DECRYPTAGE DES TRAMES UDP ===== =====
-//	   =================================================
+//	   =============================================
+//	   ===== ===== DECRYPTAGE DES TRAMES ===== =====
+//	   =============================================
+	
+//	typedef struct 
+//	{
+//		 uint8_t command;
+//		 uint8_t mode;       // 0x00 beep; 0x10 siren, other RFU
+//		 uint8_t dur;        // # of 10ms
+//		 uint8_t period;     // # of 100ms
+//		 uint8_t count;      // # of signals
+//	} st_NET_set_alarm;
+	
 	
 	private void messageDecryption(String donnee)
 	{
