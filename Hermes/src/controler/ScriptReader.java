@@ -11,6 +11,7 @@ import javax.script.ScriptEngineFactory;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import messageAdapter.MessageSender;
 import modele.Modele;
 import modele.scnObjects.Player;
 import modele.scnObjects.Pylon;
@@ -118,6 +119,19 @@ public class ScriptReader
 		if (moteur != null)
 		{
 			moteur.put("scenario", scenario);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean injectMessageSenderIntoScript(MessageSender messageSender)
+	{
+		if (moteur != null)
+		{
+			moteur.put("messageSender", messageSender);
 			return true;
 		}
 		else

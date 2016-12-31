@@ -3,8 +3,8 @@ var bombExplosed = false;
 var pylonAmorced = '';
 var terroristWin = false;
 var counterTerroristWin = false;
-var bombTimer = 10;
-var ROUND_DURATION = 15;
+var bombTimer = 15;
+var ROUND_DURATION = 30;
  
 function inputButton(idPylon, colorButton)
 {
@@ -86,6 +86,11 @@ function checkVictory()
 {
 	if(terroristWin == true || counterTerroristWin == true)
   	{
+  		//TEST LINKS
+		messageSender.allumerSirene(1,2,3,4);
+		messageSender.allumerLED(1, "RED");
+		//END TEST LINKS
+	
 		return true;
   	}
   	else

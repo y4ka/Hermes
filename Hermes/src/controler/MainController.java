@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import javax.script.ScriptException;
 
+import messageAdapter.MessageSender;
 import modele.Modele;
 import modele.scnObjects.Scenario;
 import modele.tools.XmlTool;
@@ -74,6 +75,12 @@ public class MainController
 		scriptReader.injectScenarioIntoScript(scenarioLoaded);
 	}
 	
+	public void initLinks(MessageSender messageSender)
+	{
+		//Injection du messageSender dans le script afin de faire la liaison SERVEUR -> PYLONE:
+		scriptReader.injectMessageSenderIntoScript(messageSender);
+	}
+	
 	public void addModel(Modele m)
 	{
 		this.model = m;
@@ -104,11 +111,6 @@ public class MainController
 //	   =======================================
 //	   ===== ===== AUTRES METHODES ===== =====
 //	   =======================================	
-	
-	public void messageReceived()
-	{
-		
-	}
 	
 	public ScriptReader getScriptReader()
 	{

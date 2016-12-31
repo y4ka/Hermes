@@ -25,15 +25,16 @@ public class MainClass
 		MessageAdapter messageAdapter = new MessageAdapter(controller);
 		
 		//Lancement sans IHM:
-		//controller.initScenario("scenario.js");
-		//controller.initModel("scenario.xml");
-		//controller.launch();
+		controller.initScenario("counterStrike.js");
+		controller.initModel("counterStrike.xml");
+		controller.initLinks(messageAdapter.getMessageSender());
+		controller.launchTimer();
 
 		//Tell View about Controller 
 		view.addController(controller);
 		view.addMessageAdapter(messageAdapter);
 		
-		//On lance le serveur UDP:
-		messageAdapter.getMessageReceiver().launchServer("TCP");
+		//On lance le serveur de messagerie:
+		messageAdapter.launchServer("TCP");
 	}
 }
