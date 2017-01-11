@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import java.awt.Component;
+import java.awt.Toolkit;
 
 public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 
@@ -69,7 +70,8 @@ public class LaunchFrame extends JFrame implements ActionListener, ViewLogger {
 	 * Create the frame.
 	 */
 	public LaunchFrame() {
-		setTitle("Load and Launch");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("hermes.jpg"));
+		setTitle("HERMES - Load and Launch");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 782, 633);
 		contentPane = new JPanel();

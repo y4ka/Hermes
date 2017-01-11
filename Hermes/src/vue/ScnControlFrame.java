@@ -21,6 +21,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 public class ScnControlFrame extends JFrame {
 
@@ -34,7 +35,8 @@ public class ScnControlFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public ScnControlFrame() {
-		setTitle("ScnControlFrame");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("hermes.jpg"));
+		setTitle("HERMES - ScnControlFrame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 862, 516);
 		contentPane = new JPanel();

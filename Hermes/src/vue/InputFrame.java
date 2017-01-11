@@ -26,6 +26,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
+import java.awt.Toolkit;
 
 public class InputFrame extends JFrame {
 
@@ -40,7 +41,8 @@ public class InputFrame extends JFrame {
 	 */
 	public InputFrame() 
 	{
-		setTitle("InputFrame");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("hermes.jpg"));
+		setTitle("HERMES - InputFrame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 649, 499);
 		contentPane = new JPanel();
