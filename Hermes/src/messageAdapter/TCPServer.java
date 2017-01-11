@@ -28,17 +28,25 @@ public class TCPServer extends Thread
 	{	
 		try
 		{
-			String messageClient = "";
-
 			Logger.instance.logReceiver("Connection with client: "+socket.getInetAddress());
 
-			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			messageClient = in.readLine();
-			Logger.instance.logReceiver(messageClient);
+			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			PrintStream outToClient = new PrintStream(socket.getOutputStream());
 			
-			this.send("ACK");
-
-//			socket.close();
+			String clientSentence;
+			
+			while ((clientSentence = inFromClient.readLine()) != null)
+			{
+				Logger.instance.logReceiver(clientSentence);
+				
+				// TODO: PROCESS
+				
+				//Send ACK to Client:
+				String ack = "ACK: "+clientSentence;
+				Logger.instance.logSender(ack);
+				outToClient.print(ack);
+				outToClient.flush();
+			}
 
 		} catch (Exception e)
 		{
