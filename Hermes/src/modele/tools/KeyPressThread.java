@@ -33,7 +33,13 @@ public class KeyPressThread extends Thread
                 }
                 else if(input.equalsIgnoreCase("exit"))
                 {
-                    break; // stop KeyPressThread
+                	System.out.println("Are you sure to exit ? y/n");
+                	String sureToExit = inputReader.next();
+                	
+                	if (sureToExit.equals("y") || sureToExit.equals("yes"))
+                	{
+                		System.exit(0);
+                	}
                 }
             }
         }
