@@ -23,7 +23,7 @@ public class MainClass
 	public MainClass(String [] args)
 	{
 		//Launch a thread to lister user inputs in console:
-		launchScanner();
+		//launchScanner();
 		
 		//Scan parameters and launch in the right configuration:
 		inputParameters(args);
@@ -32,8 +32,7 @@ public class MainClass
 	private void launchScanner()
 	{
 		KeyPressThread keyPressThread = new KeyPressThread();
-        Thread t = new Thread(keyPressThread);
-        t.start();
+        keyPressThread.start();
 	}
 	
 	private void launchWithHmi()
@@ -70,6 +69,11 @@ public class MainClass
 		MainController controller = new MainController();
 		controller.addModel(model);
 		
+		//Create the KeyPressThread:
+		KeyPressThread keyPressThread = new KeyPressThread();
+		keyPressThread.addContoller(controller);
+        keyPressThread.start();
+		
 		//Create Message Adapter
 		MessageAdapter messageAdapter = new MessageAdapter(controller);
 		
@@ -77,7 +81,7 @@ public class MainClass
 		controller.initScenario(jsFilePath);
 		controller.initModel(xmlFilePath);
 		controller.initLinks(messageAdapter.getMessageSender());
-		controller.launchTimer();
+		//controller.launchTimer();
 		
 		//On lance le serveur de messagerie:
 		messageAdapter.launchServer("TCP");

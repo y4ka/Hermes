@@ -2,9 +2,12 @@ package modele.tools;
 
 import java.util.Scanner;
 
-public class KeyPressThread implements Runnable 
+import controler.MainController;
+
+public class KeyPressThread extends Thread
 {
     private Scanner inputReader = new Scanner(System.in);
+    private MainController controller;
 
     public KeyPressThread() 
     {
@@ -22,11 +25,11 @@ public class KeyPressThread implements Runnable
                 
                 if(input.equals("start"))
                 {
-                    
+                	controller.launchTimer();
                 }
                 else if(input.equals("stop"))
                 {
-                    
+                	controller.stopTimer();
                 }
                 else if(input.equalsIgnoreCase("exit"))
                 {
@@ -34,6 +37,11 @@ public class KeyPressThread implements Runnable
                 }
             }
         }
+    }
+    
+    public void addContoller(MainController controller)
+    {
+    	this.controller = controller;
     }
 
 }
